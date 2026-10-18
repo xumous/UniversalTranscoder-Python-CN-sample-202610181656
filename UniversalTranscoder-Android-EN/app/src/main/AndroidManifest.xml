@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 应用清单文件：声明包信息、组件、图标与启动入口。 -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 说明：本应用完全离线，通过 SAF(Storage Access Framework) 让用户按需授权单个文件/目录，
+         因此不需要声明任何存储权限，也就不存在运行时权限弹窗，这符合“离线工具”的最小权限原则。 -->
+
+    <application
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.UniversalTranscoder"
+            tools:targetApi="28">
+
+        <!-- MainActivity：唯一的启动入口，内部用 TabLayout + ViewPager2 承载 5 个功能页。 -->
+        <activity
+                android:name=".MainActivity"
+                android:exported="true"
+                android:configChanges="orientation|screenSize|keyboardHidden">
+            <intent-filter>
+                <!-- MAIN + LAUNCHER 组合表示应用图标入口。 -->
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- SettingsActivity：并发数、默认输出目录、日志级别、硬件加速开关等配置页。 -->
+        <activity
+                android:name=".ui.SettingsActivity"
+                android:exported="false"
+                android:label="@string/settings_title"/>
+
+        <!-- AboutActivity：应用名、版本、作者与离线说明。 -->
+        <activity
+                android:name=".ui.AboutActivity"
+                android:exported="false"
+                android:label="@string/about_title"/>
+    </application>
+</manifest>

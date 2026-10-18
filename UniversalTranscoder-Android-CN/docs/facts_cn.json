@@ -1,0 +1,7 @@
+{
+  "build_result": "clean assembleDebug assembleRelease 全部成功（BUILD SUCCESSFUL，共执行 74 个任务）",
+  "artifact_path": "app/build/outputs/apk/debug/app-debug.apk 与 app/build/outputs/apk/release/app-release.apk",
+  "artifact_size": "调试包 11981942 字节（约 11.4 MB），发布包 10120096 字节（约 9.7 MB）",
+  "sdk_check": "aapt2 反查结果：包名 com.xu.universaltranscoder，compileSdkVersion 34，minSdkVersion 28，targetSdkVersion 28，应用名称为“万能转码器”",
+  "selftest_result": "工程自检全部通过：资源编译、清单合并、调试与发布打包、发布包签名校验均成功；界面字符串资源与硬编码文案已逐项核对为中文"
+}

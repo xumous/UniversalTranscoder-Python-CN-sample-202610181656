@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 队列页布局：汇总统计 + 五个控制按钮 + 任务列表。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              style="@style/PageContainer"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!-- 汇总统计卡片：显示总数、完成数、失败数与待运行数。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 汇总文本。 -->
+            <TextView
+                    android:id="@+id/txt_queue_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_primary"/>
+
+            <!-- 第一排控制按钮：启动 / 暂停 / 继续。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:orientation="horizontal">
+
+                <!-- 启动按钮：提交所有排队任务。 -->
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_queue_start"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/queue_start"/>
+
+                <!-- 暂停按钮。 -->
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_queue_pause"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_small"
+                        android:layout_weight="1"
+                        android:text="@string/queue_pause"/>
+
+                <!-- 继续按钮。 -->
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_queue_resume"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_small"
+                        android:layout_weight="1"
+                        android:text="@string/queue_resume"/>
+            </LinearLayout>
+
+            <!-- 第二排控制按钮：停止 / 清空。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:orientation="horizontal">
+
+                <!-- 停止按钮：取消所有未完成任务。 -->
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_queue_stop"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/queue_stop"/>
+
+                <!-- 清空按钮：移除已结束的任务条目。 -->
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_queue_clear"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_small"
+                        android:layout_weight="1"
+                        android:text="@string/queue_clear"/>
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 空状态文本：队列为空时显示。 -->
+    <TextView
+            android:id="@+id/txt_queue_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            android:gravity="center"
+            android:text="@string/queue_empty"
+            android:textColor="@color/text_secondary"/>
+
+    <!-- 任务列表：每行展示文件名、目标格式、状态、进度与速度/耗时。 -->
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_queue"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/space_between"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/space_between"/>
+</LinearLayout>

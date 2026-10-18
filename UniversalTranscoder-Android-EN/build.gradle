@@ -1,0 +1,8 @@
+// 根工程的构建脚本：这里只负责“声明插件版本”，不直接应用到根工程上（apply false）。
+plugins {
+    // id 'com.android.application' 是 AGP 的应用插件；version '8.4.0' 与 Gradle 8.7 是官方兼容组合。
+    // apply false 表示仅把插件加入 classpath，真正的应用在 :app 子模块里完成。
+    id 'com.android.application' version '8.4.0' apply false
+}
+
+// 说明：本工程刻意不引入任何“第三方转换库”，所有转换能力均由 Android 系统 API 真实实现。

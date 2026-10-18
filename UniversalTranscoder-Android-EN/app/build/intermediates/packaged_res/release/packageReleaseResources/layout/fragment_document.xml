@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 文档转换页布局：公共部分 + 文档专属参数 + 公共操作区。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+    <!-- 页面内容容器。 -->
+    <LinearLayout
+            style="@style/PageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- 公共部分。 -->
+        <include layout="@layout/convert_common"/>
+
+        <!-- 文档专属参数卡片。 -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="1dp">
+
+            <!-- 参数容器。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                <!-- 分组标题。 -->
+                <TextView
+                        style="@style/SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_options"/>
+
+                <!-- 输入类型说明：图片/文本/PDF 分别对应不同的操作。 -->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hint_doc_input"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"/>
+
+                <!-- 页码范围输入：仅 “PDF 渲染为 PNG” 使用。 -->
+                <EditText
+                        android:id="@+id/et_page_range"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_page_range"
+                        android:inputType="text"/>
+
+                <!-- 页码范围格式说明。 -->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hint_page_range"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"/>
+
+                <!-- 正文字号输入：仅 “文本转 PDF” 使用。 -->
+                <EditText
+                        android:id="@+id/et_text_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_text_size"
+                        android:inputType="number"
+                        android:maxLength="2"/>
+
+                <!-- 页面尺寸策略：开启表示 PDF 页面跟随图片比例，关闭表示统一 A4。 -->
+                <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_auto_page"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/label_auto_page_size"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 公共操作区。 -->
+        <include layout="@layout/convert_actions"/>
+    </LinearLayout>
+</ScrollView>

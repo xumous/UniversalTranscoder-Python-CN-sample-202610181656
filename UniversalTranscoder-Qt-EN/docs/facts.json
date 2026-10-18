@@ -1,0 +1,7 @@
+{
+  "build_result": "Build succeeded with qmake + mingw32-make -j4 (release configuration); no compilation errors and no unresolved symbols.",
+  "artifact_path": "UniversalTranscoder-Qt-EN/release/UniversalTranscoder.exe",
+  "artifact_size": "843,776 bytes (about 824 KB) for the executable; the complete portable release folder is 479 MB (26 files, including ffmpeg.exe 222 MB and ffprobe.exe 222 MB).",
+  "sdk_check": "Toolchain matches the Qt build exactly: Qt 6.8.1 (mingw_64) built with the official MinGW 13.1.0 (msvcrt runtime). Qt modules used: core, gui, widgets. The Qt Pdf module is not installed, so PDF-to-image conversion is reported as unsupported instead of being faked.",
+  "selftest_result": "PASS: kernel self-check plus one real transcode of Samples/test_video.mp4 into mp4. The command exited with code 0 in 0.36 s, produced a 109,911-byte file, which was re-probed and confirmed to contain 1 video stream and 1 audio stream. Executable exit code: 0."
+}

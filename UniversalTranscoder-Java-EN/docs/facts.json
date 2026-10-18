@@ -1,0 +1,7 @@
+{
+  "build_result": "gradle --no-daemon build -> BUILD SUCCESSFUL；命令行自检 --selftest -> PASS（退出码 0）",
+  "artifact_path": "dist\\UniversalTranscoder\\UniversalTranscoder.exe（jpackage app-image 绿色版目录，含 app 与 runtime）",
+  "artifact_size": "启动器 466,944 字节；主 jar 约 169 MB（内含 ffmpeg 与 ffprobe）；绿色版目录可直接整体拷贝分发",
+  "sdk_check": "内核探测：242 个编码器、184 个封装格式、9 个硬件加速后端；jpackage 产物实跑 --selftest 通过",
+  "selftest_result": "真实转码 mp4=121,986 字节；图片转 JPG=35,375 字节；图片转 PDF 57,396 字节；文本转 PDF 824 字节；PDF 转图片 2 页 2 文件；视频抽帧 3 张 PNG；界面离屏冒烟 8 个页签全部构建成功"
+}

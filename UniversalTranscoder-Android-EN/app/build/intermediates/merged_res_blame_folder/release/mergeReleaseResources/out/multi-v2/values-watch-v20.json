@@ -1,0 +1,20 @@
+{
+  "logs": [
+    {
+      "outputFile": "com.xu.universaltranscoder.app-mergeReleaseResources-29:/values-watch-v20/values-watch-v20.xml",
+      "map": [
+        {
+          "source": "C:\\Users\\Happy\\.gradle\\caches\\transforms-4\\2ffe3d92c75e10c6f3f8bef627e44e2f\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+          "from": {
+            "startLines": "2,5,8",
+            "startColumns": "4,4,4",
+            "startOffsets": "55,214,385",
+            "endLines": "4,7,10",
+            "endColumns": "12,12,12",
+            "endOffsets": "209,380,553"
+          }
+        }
+      ]
+    }
+  ]
+}

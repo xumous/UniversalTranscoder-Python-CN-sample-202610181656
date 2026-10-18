@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_primary">#1F6FEB</color>
+    <color name="brand_primary_dark">#0B4FC4</color>
+    <color name="brand_primary_light">#E6F0FF</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="divider">#E3E6EA</color>
+    <color name="log_background">#12181F</color>
+    <color name="log_text">#C8D2DC</color>
+    <color name="page_background">#F5F6F8</color>
+    <color name="status_error">#C5221F</color>
+    <color name="status_running">#1F6FEB</color>
+    <color name="status_success">#1E8E3E</color>
+    <color name="status_warning">#E37400</color>
+    <color name="text_disabled">#A6ADB6</color>
+    <color name="text_primary">#1B1F24</color>
+    <color name="text_secondary">#5B6470</color>
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_radius">14dp</dimen>
+    <dimen name="item_min_height">72dp</dimen>
+    <dimen name="log_height">160dp</dimen>
+    <dimen name="page_margin">16dp</dimen>
+    <dimen name="space_between">12dp</dimen>
+    <dimen name="space_small">6dp</dimen>
+    <string name="about_author_label">作者</string>
+    <string name="about_author_value">Xu</string>
+    <string name="about_engine_body">视频重封装与重编码使用 MediaExtractor、MediaCodec 与 MediaMuxer。音频重封装与 AAC
+        编码使用同一套流水线。图片转换使用 BitmapFactory 与 Bitmap.compress。文档处理使用 PdfDocument 与 PdfRenderer。抽帧使用
+        MediaMetadataRetriever。
+    </string>
+    <string name="about_engine_title">转换引擎</string>
+    <string name="about_offline_body">万能转码器全部转换都通过 Android 系统媒体 API
+        在您的设备本地完成。无需联网，任何数据都不会离开您的手机。
+    </string>
+    <string name="about_offline_title">完全离线设计</string>
+    <string name="about_support_body">可用的输出容器取决于当前设备 MediaMuxer
+        实现接受的范围。应用会在运行时探测设备，只列出真正受支持的目标。
+    </string>
+    <string name="about_support_title">容器支持范围</string>
+    <string name="about_title">关于</string>
+    <string name="about_version_label">版本</string>
+    <string name="app_name">万能转码器</string>
+    <string name="btn_clear_log">清空日志</string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_pick_files">选择文件</string>
+    <string name="btn_pick_output">选择输出目录</string>
+    <string name="btn_show_info">查看信息</string>
+    <string name="btn_start">开始转换</string>
+    <string name="channels_mono">单声道（1）</string>
+    <string name="channels_stereo">立体声（2）</string>
+    <string name="hint_default_output">默认输出：应用专属外部文件目录</string>
+    <string name="hint_doc_input">图片或纯文本文件，或需要渲染的 PDF</string>
+    <string name="hint_files_selected">已选择 %1$d 个文件</string>
+    <string name="hint_frame_count">在整段视频上均匀抽帧</string>
+    <string name="hint_frame_times_mode">抽帧模式</string>
+    <string name="hint_no_file_selected">尚未选择文件</string>
+    <string name="hint_no_supported_format">当前设备上没有找到受支持的目标格式</string>
+    <string name="hint_page_range">例如 1-3,5（留空表示全部页面）</string>
+    <string name="hint_scale">例如 50% 或 1280x720</string>
+    <string name="hint_unsupported_target">当前设备不支持该目标容器</string>
+    <string name="label_auto_page_size">PDF 页面跟随图片尺寸（关闭则为 A4）</string>
+    <string name="label_bitrate">码率（kbps）</string>
+    <string name="label_channels">声道</string>
+    <string name="label_doc_input">文档输入</string>
+    <string name="label_frame_count">抽帧数量</string>
+    <string name="label_frame_rate">帧率（fps）</string>
+    <string name="label_frame_times">抽帧时间点（秒）</string>
+    <string name="label_keep_audio">保留音轨</string>
+    <string name="label_log">执行日志</string>
+    <string name="label_media_info">媒体信息</string>
+    <string name="label_options">选项</string>
+    <string name="label_output_dir">输出目录</string>
+    <string name="label_page_range">页码范围</string>
+    <string name="label_preset">预设</string>
+    <string name="label_quality">质量</string>
+    <string name="label_resolution">分辨率（例如 1280x720）</string>
+    <string name="label_sample_rate">采样率（Hz）</string>
+    <string name="label_scale">缩放</string>
+    <string name="label_source_files">源文件</string>
+    <string name="label_status">状态</string>
+    <string name="label_target_format">目标格式</string>
+    <string name="label_text_size">字号（点）</string>
+    <string name="log_level_debug">调试</string>
+    <string name="log_level_error">错误</string>
+    <string name="log_level_info">信息</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_settings">设置</string>
+    <string name="msg_done_title">转换完成</string>
+    <string name="msg_duplicate_skipped">已跳过 %1$d 个重复任务</string>
+    <string name="msg_failed_title">转换失败</string>
+    <string name="msg_no_job">没有可执行的任务。请先选择文件。</string>
+    <string name="msg_open_tree_unsupported">本设备没有支持目录选择的文档提供者。</string>
+    <string name="queue_clear">清空</string>
+    <string name="queue_empty">队列为空</string>
+    <string name="queue_header_file">文件</string>
+    <string name="queue_header_format">格式</string>
+    <string name="queue_header_perf">速度 / 耗时</string>
+    <string name="queue_header_progress">进度</string>
+    <string name="queue_header_status">状态</string>
+    <string name="queue_pause">暂停</string>
+    <string name="queue_resume">继续</string>
+    <string name="queue_start">开始</string>
+    <string name="queue_stop">停止</string>
+    <string name="queue_summary">共 %1$d 个，已完成 %2$d 个，失败 %3$d 个，待运行 %4$d 个</string>
+    <string name="settings_concurrency">并发任务数</string>
+    <string name="settings_concurrency_desc">并行执行的任务数量。默认为 1（串行）。</string>
+    <string name="settings_custom_dir_value">自定义目录：%1$s</string>
+    <string name="settings_default_dir_value">应用专属外部文件目录</string>
+    <string name="settings_hw">优先使用硬件编解码器</string>
+    <string name="settings_hw_desc">开启后优先尝试硬件解码器/编码器。</string>
+    <string name="settings_log_level">日志级别</string>
+    <string name="settings_log_level_desc">控制写入执行日志的详细程度。</string>
+    <string name="settings_output">默认输出目录</string>
+    <string name="settings_output_desc">未选择自定义目录时使用该目录。</string>
+    <string name="settings_reset">恢复默认设置</string>
+    <string name="settings_saved">设置已保存</string>
+    <string name="settings_title">设置</string>
+    <string name="status_canceled">已取消</string>
+    <string name="status_failed">失败：%1$s</string>
+    <string name="status_finished">已完成：%1$s</string>
+    <string name="status_idle">空闲</string>
+    <string name="status_queued">已排队：%1$d 个任务</string>
+    <string name="status_working">进行中：%1$s</string>
+    <string name="tab_audio">音频</string>
+    <string name="tab_document">文档</string>
+    <string name="tab_image">图片</string>
+    <string name="tab_queue">队列</string>
+    <string name="tab_video">视频</string>
+    <string name="title_job_detail">任务详情</string>
+    <string name="title_pick_files">选择源文件</string>
+    <string name="title_pick_folder">选择输出目录</string>
+    <style name="CardContainer">
+
+        <item name="android:background">@drawable/bg_card</item>
+
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+    <style name="ItemSubtitle" parent="TextAppearance.Material3.BodySmall">
+
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    <style name="ItemTitle" parent="TextAppearance.Material3.BodyMedium">
+
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <style name="LogText">
+
+        <item name="android:fontFamily">monospace</item>
+
+        <item name="android:textColor">@color/log_text</item>
+
+        <item name="android:textSize">11sp</item>
+
+        <item name="android:background">@color/log_background</item>
+
+        <item name="android:padding">8dp</item>
+
+        <item name="android:scrollbars">vertical</item>
+    </style>
+    <style name="PageContainer">
+
+        <item name="android:background">@color/page_background</item>
+
+        <item name="android:padding">@dimen/page_margin</item>
+    </style>
+    <style name="SectionLabel" parent="TextAppearance.Material3.LabelLarge">
+
+        <item name="android:textColor">@color/text_secondary</item>
+
+        <item name="android:paddingTop">@dimen/space_small</item>
+        <item name="android:paddingBottom">@dimen/space_small</item>
+    </style>
+    <style name="Theme.UniversalTranscoder" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/brand_primary</item>
+
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">@color/brand_primary_dark</item>
+
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <item name="colorSurface">@color/card_background</item>
+
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <item name="android:windowBackground">@color/page_background</item>
+
+        <item name="android:statusBarColor">@color/brand_primary_dark</item>
+
+        <item name="android:navigationBarColor">#000000</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

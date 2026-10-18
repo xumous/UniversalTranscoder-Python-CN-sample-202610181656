@@ -1,0 +1,21 @@
+﻿INFO    | 已定位 ffmpeg：C:\Users\Happy\Pictures\watermark\FormatFactory2026101621391\UniversalTranscoder-CN\resources\ffmpeg\ffmpeg.exe
+INFO    | 已定位 ffprobe：C:\Users\Happy\Pictures\watermark\FormatFactory2026101621391\UniversalTranscoder-CN\resources\ffmpeg\ffprobe.exe
+INFO    | 检测到硬件编码器：['h264_nvenc', 'hevc_nvenc', 'av1_nvenc', 'h264_qsv', 'hevc_qsv', 'av1_qsv', 'h264_amf', 'hevc_amf', 'av1_amf', 'h264_vaapi', 'hevc_vaapi', 'h264_d3d12va', 'hevc_d3d12va']
+[1] 主窗口构建成功，标签页数量 = 7
+[2] 内核状态： 就绪
+[3] 待转文件数量 = 1
+[4] 重复添加后数量 = 1
+[5] 面板参数采集： mkv 宽= 320
+INFO    | 任务调度线程启动，并发上限 1
+[6] 队列已启动，表格行数 = 1
+INFO    | 任务调度线程退出
+    状态=完成     任务进度= 100.0% 表格进度条=100 表格状态列=完成
+[7] 最终状态=完成 输出=C:\Users\Happy\Pictures\watermark\FormatFactory2026101621391\Samples\gui_out\test_video.mkv 体积=95299
+错误标题=
+错误建议=
+原始错误=
+
+[8] 总进度条 = 100
+[9] 汇总 = 共 1 个任务 · 成功 1 · 失败 0 · 跳过 0 · 取消 0
+
+桌面端冒烟测试：全部通过

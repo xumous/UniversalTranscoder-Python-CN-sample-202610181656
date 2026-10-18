@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 转换页公共部分（第二组）：开始按钮、进度条、状态文本与执行日志。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <!-- 卡片：启动转换 + 进度 + 状态。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 开始按钮：把当前选择拆成一个或多个任务加入队列并启动调度。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_start"/>
+
+            <!-- 进度条：显示最近一次上报的整体进度。 -->
+            <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:max="100"/>
+
+            <!-- 状态文本：显示排队、运行、完成或失败原因。 -->
+            <TextView
+                    android:id="@+id/txt_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:text="@string/status_idle"
+                    android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 日志卡片：使用普通 LinearLayout + 圆角白底样式，内部是深色等宽日志框。 -->
+    <LinearLayout
+            style="@style/CardContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            android:orientation="vertical">
+
+        <!-- 日志标题行：标题 + 清空按钮。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_log"/>
+
+            <!-- 清空日志按钮。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_clear_log"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="0dp"
+                    android:text="@string/btn_clear_log"/>
+        </LinearLayout>
+
+        <!-- 日志正文：固定高度并内部滚动，避免页面被日志无限拉长。 -->
+        <TextView
+                android:id="@+id/txt_log"
+                style="@style/LogText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/log_height"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<!-- Qt 资源清单：把图标文件编进 exe，运行时无需依赖磁盘上的散文件。 -->
+<RCC>
+    <!-- 资源前缀：统一使用 /app，代码里用 ":/app/icon.ico" 引用。 -->
+    <qresource prefix="/app">
+        <!-- 应用图标：窗口图标、任务栏图标、About 页展示都取自这一份。 -->
+        <file>icon.ico</file>
+    </qresource>
+</RCC>

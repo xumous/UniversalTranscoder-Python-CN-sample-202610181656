@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主界面布局：顶部工具栏 + 标签栏 +（ViewPager2 承载的）五个功能页。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!-- 工具栏：承载应用名与右上角的溢出菜单（Settings / About）。 -->
+    <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/brand_primary"
+            app:title="@string/app_name"
+            app:titleTextColor="#FFFFFF"/>
+
+    <!-- 标签栏：五个标签与 ViewPager2 绑定，滑动时自动同步高亮。 -->
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/card_background"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/brand_primary"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/brand_primary"
+            app:tabTextColor="@color/text_secondary"/>
+
+    <!-- 页面容器：五个 Fragment 在此横向滑动切换。 -->
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+</LinearLayout>

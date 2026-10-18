@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 转换页公共部分（第一组）：源文件选择、目标格式、预设、输出目录、媒体信息。
+     之所以抽成公共布局并用 <include> 复用，是为了让四个转换页保持一致的操作路径与视觉节奏。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <!-- 卡片一：源文件选择（支持多选）。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器：负责内部留白。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_source_files"/>
+
+            <!-- 已选文件展示；初始显示提示文案。 -->
+            <TextView
+                    android:id="@+id/txt_selected_files"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_small"
+                    android:paddingBottom="@dimen/space_small"
+                    android:text="@string/hint_no_file_selected"
+                    android:textColor="@color/text_secondary"/>
+
+            <!-- 选择文件按钮：唤起系统文件选择器，支持多选。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_pick_files"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_pick_files"
+                    app:icon="@drawable/ic_file"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 卡片二：目标格式选择。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_target_format"/>
+
+            <!-- 目标格式下拉框：只列出当前设备真实支持的格式。 -->
+            <Spinner
+                    android:id="@+id/spinner_target"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"/>
+
+            <!-- 不受支持目标的说明文本；受支持时隐藏。 -->
+            <TextView
+                    android:id="@+id/txt_target_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_small"
+                    android:textColor="@color/status_warning"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 卡片三：预设选择（一键套用参数）。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_preset"/>
+
+            <!-- 预设下拉框：选中后自动设置目标格式与参数。 -->
+            <Spinner
+                    android:id="@+id/spinner_preset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 卡片四：输出目录选择。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_output_dir"/>
+
+            <!-- 当前输出目录展示；未选择时显示默认目录提示。 -->
+            <TextView
+                    android:id="@+id/txt_output_dir"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/space_small"
+                    android:paddingBottom="@dimen/space_small"
+                    android:text="@string/hint_default_output"
+                    android:textColor="@color/text_secondary"/>
+
+            <!-- 选择输出目录按钮：使用系统目录选择器（SAF）。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_pick_output"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_pick_output"
+                    app:icon="@drawable/ic_folder"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- 卡片五：媒体信息展示。 -->
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_between"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="1dp">
+
+        <!-- 卡片内容容器。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+            <!-- 分组标题。 -->
+            <TextView
+                    style="@style/SectionLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_media_info"/>
+
+            <!-- 媒体信息文本；读取后才填充内容。 -->
+            <TextView
+                    android:id="@+id/txt_media_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:textColor="@color/text_primary"
+                    android:textSize="12sp"/>
+
+            <!-- 读取信息按钮：用 MediaMetadataRetriever/MediaExtractor 探测首个文件。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_show_info"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_small"
+                    android:text="@string/btn_show_info"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

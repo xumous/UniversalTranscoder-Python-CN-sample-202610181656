@@ -1,0 +1,7 @@
+{
+  "build_result": "使用 qmake + mingw32-make -j4（Release 配置）一次性编译通过；无编译错误、无未解析符号。",
+  "artifact_path": "UniversalTranscoder-Qt-CN/release/UniversalTranscoder.exe",
+  "artifact_size": "可执行文件 825,856 字节（约 806 KB）；经 windeployqt 打包后的绿色版目录共 25 个文件、合计 502,102,145 字节（约 478.84 MB），其中 ffmpeg.exe 222,064,128 字节、ffprobe.exe 221,858,816 字节。",
+  "sdk_check": "工具链与 Qt 构建完全一致：Qt 6.8.1（mingw_64）由配套的官方 MinGW 13.1.0（msvcrt 运行时）构建；使用 core、gui、widgets 三个 Qt 模块。未安装 Qt Pdf 模块，因此 PDF 转图片如实报告为不支持，而非伪造能力。",
+  "selftest_result": "PASS：内核自检加一次真实转码，把 Samples/test_video.mp4 转为 mp4。命令退出码 0，耗时 0.41 秒，产出 109,911 字节的文件；重新探测确认含 1 条视频流与 1 条音频流。可执行文件退出码 0。"
+}

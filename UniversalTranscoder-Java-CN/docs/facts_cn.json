@@ -1,0 +1,7 @@
+{
+  "build_result": "在 JDK 17（17.0.20.1+1）与 Gradle 8.7 下执行 build 成功，结果为 BUILD SUCCESSFUL。",
+  "artifact_path": "dist\\UniversalTranscoder\\UniversalTranscoder.exe（jpackage app-image 绿色版目录 dist\\UniversalTranscoder）。",
+  "artifact_size": "绿色版目录合计 309231646 字节（约 294.91 MB）；启动器 UniversalTranscoder.exe 为 466944 字节（约 456 KB）。",
+  "sdk_check": "主类 com.xu.universaltranscoder.Main、主 jar UniversalTranscoder-1.0.0.jar、jpackage 应用名 UniversalTranscoder 均与工程配置一致。",
+  "selftest_result": "内核自检与两次真实转码均通过：视频转 MP4 产物 121986 字节，图片转 JPG 产物 35375 字节，退出码 0，打印 PASS。"
+}

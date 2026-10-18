@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- 声明文档类型为 HTML5，保证浏览器使用标准模式渲染。 -->
+<html lang="en">
+<!-- 页面根元素，language 属性设置为中文，便于输入法与无障碍工具识别。 -->
+<head>
+    <!-- 字符集声明必须放在最前，避免中文标题乱码。 -->
+    <meta charset="UTF-8"/>
+    <!-- 视口声明，保证在窄窗口/移动端按设备宽度渲染，满足响应式要求。 -->
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <!-- 禁止搜索引擎索引本工具页面（纯内网/本地工具，无需被收录）。 -->
+    <meta content="noindex, nofollow" name="robots"/>
+    <!-- 浏览器标签页标题。 -->
+    <title>Universal Transcoder</title>
+    <!-- 内置的简易图标：使用内联 SVG 数据地址，避免引用任何外部资源（离线要求）。 -->
+    <link
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23111a2b'/%3E%3Cpath d='M9 11h8l-3-3M23 21h-8l3 3' stroke='%232fb8d9' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+            rel="icon"
+    />
+</head>
+<body>
+<!-- 应用挂载点；由 main.jsx 负责把 Vue 应用渲染进这个节点。 -->
+<div id="app"></div>
+<!-- 模块脚本入口；Vite 在构建时会把它编译成 dist/assets 下的实际文件。 -->
+<script src="/src/main.jsx" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+============================================================
+ 万能转码器 1.0.0 - 自检
+============================================================
+Qt 运行时版本 : 6.8.1
+程序目录         : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release
+
+[1/5] 定位 FFmpeg 内核（使用真实的 -version 校验）
+      ffmpeg  : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release/resources/ffmpeg/ffmpeg.exe
+      ffprobe : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release/resources/ffmpeg/ffprobe.exe
+      版本    : ffmpeg version 2026-02-15-git-33b215d155-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+      通过：两个工具均存在且已校验。
+
+[2/5] 探测内核能力（-encoders / -formats / -hwaccels）
+      编码器: 243（视频 142，音频 90，字幕 11）
+      封装格式: 419
+      硬件加速后端: cuda,vaapi,dxva2,qsv,d3d11va,opencl,vulkan,d3d12va,amf
+      硬件编码器: h264_nvenc(nvidia) hevc_nvenc(nvidia) av1_nvenc(nvidia) h264_qsv(intel) hevc_qsv(intel) av1_qsv(intel) h264_amf(amd) hevc_amf(amd) av1_amf(amd) h264_vaapi(intel) hevc_vaapi(intel) h264_d3d12va(any) hevc_d3d12va(any)
+      PDF 后端: 当前构建不可用 Qt Pdf 模块 - 不支持 PDF 转图片
+      预设: 35 套（视频 14 / 音频 11 / 图片 10）
+      通过：内核已响应全部能力查询。
+
+[3/5] 定位样例视频
+      源文件: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/Samples/test_video.mp4
+
+[4/5] 执行一次真实转码（MP4 / H.264 + AAC）
+      探测: mov,mp4,m4a,3gp,3g2,mj2 | 视频：640x480/h264/25.00 fps | 音频：aac/44100 Hz/1 ch | 时长：00:06
+      输出: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release/selftest_out/selftest_video.mp4
+      命令: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release/resources/ffmpeg/ffmpeg.exe -hide_banner -y -i C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/Samples/test_video.mp4 -c:v libx264 -preset medium -crf 30 -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart -f mp4 -vf scale=640:-2 C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-CN/release/selftest_out/selftest_video.mp4
+      退出码: 0，耗时: 0.41 秒，进度达到 100.0%
+      产物大小: 109911 字节（107 KB）
+
+[5/5] 校验生成的产物
+      重新探测: mov,mp4,m4a,3gp,3g2,mj2 | 视频：640x480/h264/25.00 fps | 音频：aac/44100 Hz/1 ch | 时长：00:06
+      流数量: 2（视频 1，音频 1）
+      文件存在且非空: 是
+      可识别的媒体文件: 是
+
+RESULT: PASS - 内核已校验通过，真实转码产出了可用文件。

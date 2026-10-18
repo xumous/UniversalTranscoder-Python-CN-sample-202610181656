@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 尺寸资源：把间距与字号统一抽取，保证各页面视觉节奏一致。 -->
+<resources>
+    <!-- 页面外边距：16dp 是 Material 建议的手机端标准边距。 -->
+    <dimen name="page_margin">16dp</dimen>
+    <!-- 卡片内边距。 -->
+    <dimen name="card_padding">16dp</dimen>
+    <!-- 卡片圆角半径。 -->
+    <dimen name="card_radius">14dp</dimen>
+    <!-- 控件之间的垂直间距。 -->
+    <dimen name="space_between">12dp</dimen>
+    <!-- 同组小控件之间的垂直间距。 -->
+    <dimen name="space_small">6dp</dimen>
+    <!-- 日志区域高度：固定高度并内部滚动，避免把整页撑得过长。 -->
+    <dimen name="log_height">160dp</dimen>
+    <!-- 列表项的最小高度，保证触摸目标足够大。 -->
+    <dimen name="item_min_height">72dp</dimen>
+</resources>

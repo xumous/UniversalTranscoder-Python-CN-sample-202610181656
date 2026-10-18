@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 颜色资源：集中管理品牌色与语义色，避免在布局里到处硬编码色值。 -->
+<resources>
+    <!-- 品牌主色：偏蓝，用于按钮、选中态与进度条，视觉上克制不花哨。 -->
+    <color name="brand_primary">#1F6FEB</color>
+    <!-- 品牌深色：用于渐变背景的第二端与状态栏。 -->
+    <color name="brand_primary_dark">#0B4FC4</color>
+    <!-- 品牌浅色：用于选中标签页的背景高亮。 -->
+    <color name="brand_primary_light">#E6F0FF</color>
+
+    <!-- 页面背景：浅灰，让白色卡片形成层次。 -->
+    <color name="page_background">#F5F6F8</color>
+    <!-- 卡片背景：纯白，承载表单与列表内容。 -->
+    <color name="card_background">#FFFFFF</color>
+    <!-- 分割线颜色：非常淡的灰，用于列表项之间。 -->
+    <color name="divider">#E3E6EA</color>
+
+    <!-- 主要文字色。 -->
+    <color name="text_primary">#1B1F24</color>
+    <!-- 次要文字色：用于说明性文字与提示。 -->
+    <color name="text_secondary">#5B6470</color>
+    <!-- 不可用控件文字色。 -->
+    <color name="text_disabled">#A6ADB6</color>
+
+    <!-- 状态色：成功绿、警告橙、失败红，用于任务状态展示。 -->
+    <color name="status_success">#1E8E3E</color>
+    <color name="status_warning">#E37400</color>
+    <color name="status_error">#C5221F</color>
+    <!-- 运行中状态的蓝色。 -->
+    <color name="status_running">#1F6FEB</color>
+
+    <!-- 日志文本框背景与文字色，营造等宽的“控制台”观感。 -->
+    <color name="log_background">#12181F</color>
+    <color name="log_text">#C8D2DC</color>
+</resources>

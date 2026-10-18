@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 溢出菜单：只包含 Settings 与 About 两项，按需求放在右上角。 -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- 设置入口。 -->
+    <item
+            android:id="@+id/action_settings"
+            android:title="@string/menu_settings"
+            app:showAsAction="never"/>
+
+    <!-- 关于入口。 -->
+    <item
+            android:id="@+id/action_about"
+            android:title="@string/menu_about"
+            app:showAsAction="never"/>
+</menu>

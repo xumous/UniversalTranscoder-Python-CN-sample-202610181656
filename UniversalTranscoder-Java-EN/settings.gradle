@@ -1,0 +1,2 @@
+// 声明根工程名称为 UniversalTranscoder，这个名字会被 Gradle 用来标识本次构建的根项目
+rootProject.name = 'UniversalTranscoder'

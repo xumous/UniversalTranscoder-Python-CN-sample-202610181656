@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自适应图标的自定义前景层：用 vector 画出「播放三角 + 转换箭头」的图形。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108"
+        android:viewportHeight="108">
+
+    <!-- 播放三角：位于左半部，代表“媒体”。
+         三个点构成一个指向右方的实心三角形，重心大致在 (36,50)。 -->
+    <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M30,34 L52,50 L30,66 Z"/>
+
+    <!-- 转换箭头：位于右半部。
+         第一段是箭杆（从 58,50 到 77,50），第二段是箭头（折线 67,39 → 78,50 → 67,61）。
+         使用 round cap/join 让线条端点圆润，与三角的锐角形成对比。 -->
+    <path
+            android:fillColor="#00000000"
+            android:pathData="M58,50 L77,50 M67,39 L78,50 L67,61"
+            android:strokeColor="#FFFFFF"
+            android:strokeLineCap="round"
+            android:strokeLineJoin="round"
+            android:strokeWidth="7"/>
+</vector>

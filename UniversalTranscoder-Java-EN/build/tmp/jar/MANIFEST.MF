@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: com.xu.universaltranscoder.Main
+Implementation-Title: Universal Transcoder
+Implementation-Version: 1.0.0
+

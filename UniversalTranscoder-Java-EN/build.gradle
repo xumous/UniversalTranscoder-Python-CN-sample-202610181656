@@ -1,0 +1,88 @@
+// 引入 java 插件，它是本项目最核心的插件，负责源码编译、资源处理与 jar 打包
+plugins {
+    id 'java'
+    // 引入 application 插件，它建立在 java 插件之上，额外提供 mainClass 与运行/分发任务
+    id 'application'
+}
+
+// 定义组织坐标，settings.gradle 里的工程名会与该组织名一起构成本工程的逻辑坐标
+group = 'com.xu'
+// 定义版本号 1.0.0，该版本号会同时写入 jar 清单，About 页面读取它显示给用户
+version = '1.0.0'
+
+// 声明依赖仓库为 Maven 中央仓库，Gradle 会从这里下载 PDFBox 及其传递依赖
+repositories {
+    // mavenCentral() 是标准写法，指向 https://repo.maven.apache.org/maven2
+    mavenCentral()
+}
+
+// 声明工程依赖，这里刻意只保留一个外部依赖，其余功能全部使用 JDK 标准库自研实现
+dependencies {
+    // PDFBox 2.0.31 用于“PDF 渲染为图片”，是本工程唯一的外部库，避免引入更多运行时
+    implementation 'org.apache.pdfbox:pdfbox:2.0.31'
+}
+
+// 显式指定源码与目标字节码版本为 17，保证在 JDK 17 运行时上行为可预测
+java {
+    // 源码兼容级别设为 17，编译器会拒绝使用 17 以后才出现的语言特性
+    sourceCompatibility = JavaVersion.VERSION_17
+    // 目标字节码级别同样设为 17，生成 class 文件版本号 61
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// 配置源码集，重点是把工程根的 resources 目录也纳入资源路径，使 ffmpeg 可随包分发
+sourceSets {
+    // main 是唯一源码集，本项目不需要测试源码集，因此不声明 test
+    main {
+        // java 源目录保持标准位置，便于 IDE 与本机构建工具一致识别
+        java { srcDirs = ['src/main/java'] }
+        // resources 同时包含工程根 resources（存放 ffmpeg.exe/ffprobe.exe）与标准资源目录
+        resources { srcDirs = ['resources', 'src/main/resources'] }
+    }
+}
+
+// 配置 application 插件的主类，installDist 与 run 任务都会使用该值
+application {
+    // 主类固定为 com.xu.universaltranscoder.Main，与任务书要求完全一致
+    mainClass = 'com.xu.universaltranscoder.Main'
+}
+
+// 统一设置所有 Java 编译任务的源码编码为 UTF-8，避免中文注释在 Windows 默认 GBK 下乱码
+tasks.withType(JavaCompile).configureEach {
+    // 显式指定 UTF-8，否则 javac 会按平台默认编码读取源文件而报错
+    options.encoding = 'UTF-8'
+}
+
+// 关闭重复资源报错，因为 resources 与 src/main/resources 可能包含同名占位条目
+tasks.withType(Copy).configureEach {
+    // 采用排除策略，同名文件只保留第一个，保证构建不会因重复条目中断
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+// 编译任务需要重新编译以便产出最新 class，这里无需额外配置，只保持默认行为
+// 配置 jar 打包任务，把主类写进清单并允许 zip64，防止超大素材包触发 4GB 限制
+jar {
+    // 启用 zip64 扩展，因为随包分发的 ffmpeg 体积较大，开启后可避免归档尺寸限制问题
+    zip64 = true
+    // 写入清单属性，Main-Class 让 jar 可以双击或被 jpackage 直接引用
+    manifest {
+        // 指定启动入口类，jpackage 打包后 exe 会依赖该属性定位入口
+        attributes 'Main-Class': 'com.xu.universaltranscoder.Main',
+                // 写入标题，About 页面与 jpackage 的元信息都可以读取它
+                'Implementation-Title': 'Universal Transcoder',
+                // 写入版本，供 About 页面显示当前应用版本号
+                'Implementation-Version': project.version
+    }
+}
+
+// 注册一个同步任务，把主 jar 与全部运行时依赖归集到 jpackage 所需的输入目录
+tasks.register('jpackageInput', Sync) {
+    // 该任务依赖 jar，确保执行前主 jar 已经生成
+    dependsOn tasks.named('jar')
+    // 复制主 jar 归档文件，jpackage 的 --main-jar 会指向这里的文件名
+    from tasks.named('jar').map { it.archiveFile }
+    // 复制运行时类路径上的全部依赖 jar，PDFBox 及其依赖会被一并带上
+    from configurations.runtimeClasspath
+    // 输出目录固定在 build/jpackage-input，后续 jpackage --input 使用该目录
+    into layout.buildDirectory.dir('jpackage-input')
+}

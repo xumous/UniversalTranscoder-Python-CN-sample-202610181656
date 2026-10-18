@@ -1,0 +1,7 @@
+{
+  "build_result": "gradle clean assembleDebug assembleRelease -> BUILD SUCCESSFUL（无编译 error）",
+  "artifact_path": "app\\build\\outputs\\apk\\debug\\app-debug.apk 与 app\\build\\outputs\\apk\\release\\app-release.apk",
+  "artifact_size": "debug 11,981,382 字节（11.43 MiB）；release 10,119,596 字节（9.65 MiB，已用工程内自签名证书签名）",
+  "sdk_check": "aapt2 dump badging 显示 package=com.xu.universaltranscoder、sdkVersion=28、targetSdkVersion=28、compileSdkVersion=34、versionName=1.0.0；apksigner verify 通过（v2 方案，签名者 DN 含 CN=Xu）",
+  "selftest_result": "24 个 Java 源文件全部编译通过，两条构建目标均产出可安装 APK；转换逻辑基于 Android 系统多媒体接口实现，真机安装与转换需在 Android 9 及以上设备上复测"
+}

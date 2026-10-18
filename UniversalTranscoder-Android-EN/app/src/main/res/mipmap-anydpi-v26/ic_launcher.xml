@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自适应图标声明（API 26+）。由于 minSdk 为 28，本目录对所有目标设备都生效，无需额外的 PNG 兜底资源。 -->
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景层使用品牌蓝渐变 vector。 -->
+    <background android:drawable="@drawable/ic_launcher_background"/>
+    <!-- 前景层使用「播放三角 + 转换箭头」vector。 -->
+    <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+    <!-- 单色层：系统在启用主题化图标时使用，复用前景图形即可。 -->
+    <monochrome android:drawable="@drawable/ic_launcher_foreground"/>
+</adaptive-icon>

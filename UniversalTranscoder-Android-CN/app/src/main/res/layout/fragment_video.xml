@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 视频转换页布局：公共部分 + 视频专属参数 + 公共操作区。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+    <!-- 页面内容容器：使用统一的页面背景与边距样式。 -->
+    <LinearLayout
+            style="@style/PageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- 公共部分：源文件、目标格式、预设、输出目录、媒体信息。 -->
+        <include layout="@layout/convert_common"/>
+
+        <!-- 视频专属参数卡片。 -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="1dp">
+
+            <!-- 参数容器。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                <!-- 分组标题。 -->
+                <TextView
+                        style="@style/SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_options"/>
+
+                <!-- 视频码率输入；仅重编码目标会用到。 -->
+                <EditText
+                        android:id="@+id/et_bitrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_bitrate"
+                        android:inputType="number"
+                        android:maxLength="6"/>
+
+                <!-- 帧率输入。 -->
+                <EditText
+                        android:id="@+id/et_fps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_frame_rate"
+                        android:inputType="number"
+                        android:maxLength="3"/>
+
+                <!-- 分辨率输入，形如 1280x720；留空表示沿用源分辨率。 -->
+                <EditText
+                        android:id="@+id/et_resolution"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_resolution"
+                        android:inputType="text"/>
+
+                <!-- 是否保留音轨：重封装时可用，关闭则只输出视频轨。 -->
+                <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_keep_audio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="@string/label_keep_audio"/>
+
+                <!-- 抽帧时间点输入（秒），逗号分隔；优先于抽帧数量。 -->
+                <EditText
+                        android:id="@+id/et_frame_times"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_frame_times"
+                        android:inputType="text"/>
+
+                <!-- 抽帧数量输入：均匀分布模式。 -->
+                <EditText
+                        android:id="@+id/et_frame_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_frame_count"
+                        android:inputType="number"
+                        android:maxLength="2"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 公共操作区：开始按钮、进度、状态、日志。 -->
+        <include layout="@layout/convert_actions"/>
+    </LinearLayout>
+</ScrollView>

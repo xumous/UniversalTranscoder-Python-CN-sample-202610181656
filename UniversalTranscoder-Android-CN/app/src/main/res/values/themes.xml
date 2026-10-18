@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主题资源：基于 Material3 的 NoActionBar 主题，因为主界面使用自定义的 MaterialToolbar。 -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- 应用主题：浅色为主，跟随系统深色模式时由 DayNight 自动切换底层的 Material 颜色。 -->
+    <style name="Theme.UniversalTranscoder" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 主色：决定按钮、标签选中态与进度条的颜色。 -->
+        <item name="colorPrimary">@color/brand_primary</item>
+        <!-- 主色之上的文字色（按钮文字等）使用白色以保证对比度。 -->
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <!-- 次级色用于 Material 控件（如滑动条）的强调色。 -->
+        <item name="colorSecondary">@color/brand_primary_dark</item>
+        <!-- 次级色之上的文字色。 -->
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <!-- 页面表面色。 -->
+        <item name="colorSurface">@color/card_background</item>
+        <!-- 表面之上的文字色。 -->
+        <item name="colorOnSurface">@color/text_primary</item>
+        <!-- 窗口背景色。 -->
+        <item name="android:windowBackground">@color/page_background</item>
+        <!-- 状态栏使用品牌深色，视觉上与工具栏连成一体。 -->
+        <item name="android:statusBarColor">@color/brand_primary_dark</item>
+        <!-- 导航栏使用纯黑，避免与内容区域混在一起。 -->
+        <item name="android:navigationBarColor">#000000</item>
+        <!-- 禁用 ActionBar，改由布局内的 MaterialToolbar 承担标题与菜单。 -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- 页面根布局样式：统一的背景色与外边距，供各 Fragment 复用。 -->
+    <style name="PageContainer">
+        <!-- 背景使用页面灰，让内部卡片更突出。 -->
+        <item name="android:background">@color/page_background</item>
+        <!-- 内边距统一为 16dp。 -->
+        <item name="android:padding">@dimen/page_margin</item>
+    </style>
+
+    <!-- 卡片容器样式：白色圆角背景 + 内边距，作为表单分组。 -->
+    <style name="CardContainer">
+        <!-- 使用自定义的圆角白底 drawable。 -->
+        <item name="android:background">@drawable/bg_card</item>
+        <!-- 卡片内边距。 -->
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+
+    <!-- 小标题样式：用于 Options / Media info 之类的分组标题。 -->
+    <style name="SectionLabel" parent="TextAppearance.Material3.LabelLarge">
+        <!-- 使用次要文字色，弱化层级。 -->
+        <item name="android:textColor">@color/text_secondary</item>
+        <!-- 上下留出小间距。 -->
+        <item name="android:paddingTop">@dimen/space_small</item>
+        <item name="android:paddingBottom">@dimen/space_small</item>
+    </style>
+
+    <!-- 日志文本框样式：等宽深色背景，模拟控制台输出。 -->
+    <style name="LogText">
+        <!-- 使用等宽字体，便于对齐时间戳与进度数字。 -->
+        <item name="android:fontFamily">monospace</item>
+        <!-- 日志文字色为浅灰蓝。 -->
+        <item name="android:textColor">@color/log_text</item>
+        <!-- 日志字号偏小以容纳更多行。 -->
+        <item name="android:textSize">11sp</item>
+        <!-- 深色背景。 -->
+        <item name="android:background">@color/log_background</item>
+        <!-- 内部留白，避免文字贴边。 -->
+        <item name="android:padding">8dp</item>
+        <!-- 允许纵向滚动。 -->
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <!-- 队列条目主标题样式。 -->
+    <style name="ItemTitle" parent="TextAppearance.Material3.BodyMedium">
+        <!-- 主标题使用加粗的主要文字色。 -->
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- 队列条目副标题样式。 -->
+    <style name="ItemSubtitle" parent="TextAppearance.Material3.BodySmall">
+        <!-- 副标题使用次要文字色。 -->
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+</resources>

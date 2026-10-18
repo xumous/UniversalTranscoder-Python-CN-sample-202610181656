@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 文件选择图标：用一个带折角的文档外形表示“选择文件”。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="20dp"
+        android:height="20dp"
+        android:viewportWidth="24"
+        android:viewportHeight="24"
+        android:tint="?attr/colorPrimary">
+    <!-- 文档主体轮廓（含右上折角），使用填充绘制。 -->
+    <path
+            android:fillColor="#FF000000"
+            android:pathData="M6,2h7l5,5v13a2,2 0 0 1 -2,2H6a2,2 0 0 1 -2,-2V4a2,2 0 0 1 2,-2z"/>
+    <!-- 折角三角：用背景色画出，形成折页的视觉缺口。 -->
+    <path
+            android:fillColor="#FFFFFFFF"
+            android:pathData="M13,2l5,5h-5z"/>
+</vector>

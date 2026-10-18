@@ -1,0 +1,30 @@
+// 该文件是 Gradle 的 settings 脚本：它决定“构建包含哪些子工程”以及“从哪里下载插件与依赖”。
+// 使用 pluginManagement 块是为了让根工程 plugins {} 中声明的 Android Gradle Plugin 能被正确解析。
+pluginManagement {
+    repositories {
+        // google() 仓库里托管着 Android Gradle Plugin(AGP) 及其配套构件，必须放在最前面。
+        google()
+        // mavenCentral() 提供通用 Java/Kotlin 构件，AGP 的某些传递依赖只在这里有。
+        mavenCentral()
+        // gradlePluginPortal() 提供社区 Gradle 插件（本例仅作为兜底，避免首次解析失败）。
+        gradlePluginPortal()
+    }
+}
+
+// dependencyResolutionManagement 统一集中管理所有模块的依赖仓库，避免每个模块重复声明。
+dependencyResolutionManagement {
+    // FAIL_ON_PROJECT_REPOS 表示禁止在子模块里再写 repositories{}，强制依赖来源单一化，减少解析歧义。
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        // AndroidX / Material / ConstraintLayout 等构件全部来自 google() 仓库。
+        google()
+        // 少量 OpenJDK 相关与注解构件由 mavenCentral() 提供。
+        mavenCentral()
+    }
+}
+
+// rootProject.name 决定构建产物的工程名与 Gradle 的工程标识，这里固定为 UniversalTranscoder。
+rootProject.name = "UniversalTranscoder"
+
+// include 声明参与本次构建的子工程；只有一个 :app 模块，即 APK 本体。
+include ':app'

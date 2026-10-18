@@ -1,0 +1,1137 @@
+/* 全局样式表：深色科技风、扁平卡片式布局，全部手写 CSS，不依赖任何 UI 组件库。 */
+
+/* 主题变量集中定义，方便统一调整配色。 */
+:root {
+    --bg: #0d1420; /* 页面最底层背景：深蓝灰 */
+    --bg-deep: #0a101a; /* 更深的背景，用于表格头、代码块 */
+    --panel: #162030; /* 卡片面板背景 */
+    --panel-2: #1b2637; /* 次级面板背景（输入控件、行悬停） */
+    --panel-3: #212e42; /* 三级面板背景（激活项） */
+    --line: #24334c; /* 边框分割线颜色 */
+    --line-soft: #1e2a3e; /* 更淡的分割线 */
+    --text: #dbe4f0; /* 主要文字颜色 */
+    --text-dim: #a8b8d0; /* 次要文字颜色 */
+    --muted: #8b9bb8; /* 说明文字/占位文字颜色 */
+    --accent: #2fb8d9; /* 主强调色：青色 */
+    --accent-2: #4a8ff0; /* 次强调色：蓝色 */
+    --accent-dim: rgba(47, 184, 217, 0.14); /* 强调色的低透明背景 */
+    --ok: #35c98a; /* 成功状态色 */
+    --warn: #e2a63c; /* 警告状态色 */
+    --err: #e0655f; /* 失败状态色 */
+    --radius: 8px; /* 统一圆角半径 */
+    --radius-sm: 5px; /* 小控件圆角半径 */
+}
+
+/* 重置盒模型，避免不同浏览器默认值差异导致布局错位。 */
+* {
+    box-sizing: border-box;
+}
+
+/* 页面根节点：铺满视口高度，禁止整页滚动，滚动交给内部区域。 */
+html,
+body,
+#app {
+    height: 100%; /* 三段式布局需要明确高度才能正确支撑 */
+    margin: 0; /* 去掉浏览器默认外边距 */
+}
+
+/* 全局字体与基础配色。 */
+body {
+    background: var(--bg); /* 深色背景 */
+    color: var(--text); /* 默认文字颜色 */
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif; /* 中文优先字体栈 */
+    font-size: 13px; /* 工具类软件偏紧凑的基准字号 */
+    line-height: 1.6; /* 适当行高便于阅读表单说明 */
+    -webkit-font-smoothing: antialiased; /* 深色背景下文字更清晰 */
+}
+
+/* 滚动条美化，与深色主题统一。 */
+::-webkit-scrollbar {
+    width: 9px; /* 纵向滚动条宽度 */
+    height: 9px; /* 横向滚动条高度 */
+}
+
+/* 滚动条滑块。 */
+::-webkit-scrollbar-thumb {
+    background: #2b3a53; /* 滑块颜色 */
+    border-radius: 6px; /* 圆角滑块 */
+}
+
+/* 滚动条滑块悬停。 */
+::-webkit-scrollbar-thumb:hover {
+    background: #35496a; /* 悬停时提亮，提示可拖动 */
+}
+
+/* 滚动条轨道。 */
+::-webkit-scrollbar-track {
+    background: transparent; /* 轨道透明，避免出现两条色带 */
+}
+
+/* ---------------------- 整体外壳布局 ---------------------- */
+
+/* 应用外壳：纵向三段式（顶部栏 / 导航 / 主体），主体内部再分工作区与底部停靠区。 */
+.shell {
+    display: flex; /* 纵向弹性布局 */
+    flex-direction: column; /* 自上而下排列 */
+    height: 100%; /* 占满视口 */
+    overflow: hidden; /* 防止内部元素把页面撑出滚动条 */
+}
+
+/* 顶部品牌栏：左侧软件名与版本，右侧内核状态指示。 */
+.topbar {
+    display: flex; /* 横向排列左右两组信息 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 两端对齐 */
+    gap: 16px; /* 两组信息之间的最小间距 */
+    padding: 10px 16px; /* 内边距 */
+    background: var(--bg-deep); /* 比主体更深的底色，形成层次 */
+    border-bottom: 1px solid var(--line); /* 与导航栏之间的分割线 */
+    flex-wrap: wrap; /* 窗口极窄时允许换行，避免溢出 */
+}
+
+/* 品牌区：图标方块 + 文字。 */
+.brand {
+    display: flex; /* 横向布局 */
+    align-items: center; /* 垂直居中 */
+    gap: 10px; /* 图标与文字间距 */
+    min-width: 0; /* 允许子元素在窄窗口下收缩 */
+}
+
+/* 品牌图标方块。 */
+.brand-mark {
+    width: 30px; /* 固定宽度 */
+    height: 30px; /* 固定高度，保持正方形 */
+    border-radius: var(--radius-sm); /* 小圆角 */
+    background: linear-gradient(150deg, var(--accent), var(--accent-2)); /* 克制的双色标块 */
+    display: flex; /* 内部文字居中 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    color: #05121c; /* 深色文字与亮底形成对比 */
+    font-weight: 700; /* 加粗 */
+    font-size: 15px; /* 图标字号 */
+    flex: none; /* 不参与压缩 */
+}
+
+/* 品牌主标题。 */
+.brand-title {
+    font-size: 15px; /* 稍大于正文 */
+    font-weight: 600; /* 半粗体 */
+    letter-spacing: 0.4px; /* 轻微字距，提升质感 */
+    white-space: nowrap; /* 不换行 */
+}
+
+/* 品牌副标题（版本号等）。 */
+.brand-sub {
+    font-size: 11px; /* 小字号 */
+    color: var(--muted); /* 弱化颜色 */
+    white-space: nowrap; /* 不换行 */
+}
+
+/* 顶部右侧信息组。 */
+.topbar-right {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 10px; /* 元素间距 */
+    flex-wrap: wrap; /* 窄窗口允许换行 */
+}
+
+/* 内核状态指示胶囊。 */
+.kernel-pill {
+    display: inline-flex; /* 横向内联排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 6px; /* 圆点与文字间距 */
+    padding: 3px 10px; /* 内边距 */
+    border-radius: 999px; /* 全圆角胶囊 */
+    border: 1px solid var(--line); /* 边框 */
+    background: var(--panel-2); /* 底色 */
+    font-size: 12px; /* 小字号 */
+    color: var(--text-dim); /* 次要文字色 */
+    max-width: 320px; /* 限制最大宽度，避免路径过长挤压版式 */
+    overflow: hidden; /* 超出裁剪 */
+    white-space: nowrap; /* 不换行 */
+    text-overflow: ellipsis; /* 超长显示省略号 */
+}
+
+/* 状态圆点基类。 */
+.dot {
+    width: 8px; /* 圆点宽度 */
+    height: 8px; /* 圆点高度，保持正圆 */
+    border-radius: 50%; /* 圆形 */
+    flex: none; /* 不压缩 */
+}
+
+/* 圆点的成功态（内核就绪）。 */
+.dot.ok {
+    background: var(--ok); /* 绿色 */
+    box-shadow: 0 0 0 3px rgba(53, 201, 138, 0.16); /* 微弱光晕，克制不夸张 */
+}
+
+/* 圆点的失败态（内核缺失）。 */
+.dot.bad {
+    background: var(--err); /* 红色 */
+    box-shadow: 0 0 0 3px rgba(224, 101, 95, 0.16); /* 微弱光晕 */
+}
+
+/* ---------------------- 顶部导航标签页 ---------------------- */
+
+/* 导航栏容器。 */
+.nav {
+    display: flex; /* 横向排列标签 */
+    align-items: center; /* 垂直居中 */
+    gap: 2px; /* 标签间距极小，形成连片的分段控件观感 */
+    padding: 0 12px; /* 左右留白 */
+    background: var(--bg-deep); /* 与顶部栏同底色 */
+    border-bottom: 1px solid var(--line); /* 底部分割线 */
+    overflow-x: auto; /* 窄窗口下横向滚动而不是挤压 */
+    flex: none; /* 不参与纵向伸缩 */
+}
+
+/* 单个导航标签。 */
+.nav-tab {
+    appearance: none; /* 去掉浏览器默认按钮样式 */
+    background: transparent; /* 透明底 */
+    border: none; /* 无边框 */
+    border-bottom: 2px solid transparent; /* 底部高亮条默认透明 */
+    color: var(--muted); /* 未选中时颜色弱化 */
+    font-family: inherit; /* 继承全局字体 */
+    font-size: 13px; /* 字号 */
+    padding: 9px 14px; /* 内边距，保证点击区域够大 */
+    cursor: pointer; /* 手型光标 */
+    white-space: nowrap; /* 不换行 */
+    transition: color 0.15s, border-color 0.15s, background 0.15s; /* 平滑过渡 */
+}
+
+/* 导航标签悬停态。 */
+.nav-tab:hover {
+    color: var(--text); /* 提亮文字 */
+    background: var(--panel); /* 轻微底色反馈 */
+}
+
+/* 导航标签选中态。 */
+.nav-tab.active {
+    color: var(--accent); /* 强调色文字 */
+    border-bottom-color: var(--accent); /* 底部青色高亮条 */
+    background: var(--panel); /* 与主体面板颜色衔接形成“页签”观感 */
+}
+
+/* 导航标签上的小型计数徽标（例如任务数量）。 */
+.nav-count {
+    display: inline-block; /* 行内块 */
+    margin-left: 6px; /* 与文字间距 */
+    padding: 0 6px; /* 左右内边距 */
+    border-radius: 999px; /* 胶囊形 */
+    background: var(--panel-3); /* 底色 */
+    color: var(--text-dim); /* 文字色 */
+    font-size: 11px; /* 小字号 */
+}
+
+/* ---------------------- 主体区域 ---------------------- */
+
+/* 主体：上方是页内容，下方是固定的任务停靠区。 */
+.body {
+    flex: 1; /* 占满剩余高度 */
+    min-height: 0; /* 关键：允许内部滚动容器正确收缩 */
+    display: flex; /* 纵向布局 */
+    flex-direction: column; /* 页内容在上、停靠区在下 */
+    overflow: hidden; /* 禁止整块滚动 */
+}
+
+/* 页内容滚动区。 */
+.content {
+    flex: 1; /* 占满停靠区之上的空间 */
+    min-height: 0; /* 允许收缩 */
+    overflow: auto; /* 内容超出时自身滚动 */
+    padding: 14px 16px 16px; /* 内边距 */
+}
+
+/* 左右两栏工作区：左窄右宽。 */
+.workspace {
+    display: grid; /* 栅格布局 */
+    grid-template-columns: 320px minmax(0, 1fr); /* 左栏固定宽、右栏自适应且可收缩 */
+    gap: 14px; /* 两栏间距 */
+    align-items: start; /* 两栏各自从顶部开始排列 */
+}
+
+/* 窄窗口下堆叠为单栏，避免横向溢出。 */
+@media (max-width: 940px) {
+    .workspace {
+        grid-template-columns: minmax(0, 1fr); /* 只保留一列 */
+    }
+}
+
+/* 参数面板内部的小栅格（多列表单）。 */
+.grid {
+    display: grid; /* 栅格布局 */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* 自适应列宽 */
+    gap: 10px 12px; /* 行列间距 */
+}
+
+/* 双列栅格（用于较窄的字段组）。 */
+.grid-2 {
+    display: grid; /* 栅格布局 */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* 更窄的最小列宽 */
+    gap: 10px 12px; /* 行列间距 */
+}
+
+/* 单列栅格。 */
+.grid-1 {
+    display: grid; /* 栅格布局 */
+    grid-template-columns: minmax(0, 1fr); /* 单列占满 */
+    gap: 10px; /* 行间距 */
+}
+
+/* 跨多列的小工具类。 */
+.span-2 {
+    grid-column: span 2; /* 占据两列，用于较宽的输入框 */
+}
+
+/* ---------------------- 卡片 ---------------------- */
+
+/* 通用卡片容器。 */
+.card {
+    background: var(--panel); /* 面板底色 */
+    border: 1px solid var(--line); /* 边框 */
+    border-radius: var(--radius); /* 圆角 */
+    padding: 12px 14px; /* 内边距 */
+}
+
+/* 卡片之间的垂直间距。 */
+.card + .card {
+    margin-top: 12px; /* 相邻卡片拉开距离 */
+}
+
+/* 卡片标题行。 */
+.card-head {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 标题与操作区两端对齐 */
+    gap: 10px; /* 间距 */
+    margin-bottom: 10px; /* 与卡片正文的距离 */
+    flex-wrap: wrap; /* 窄窗口允许换行 */
+}
+
+/* 卡片标题文字。 */
+.card-title {
+    font-size: 13px; /* 字号 */
+    font-weight: 600; /* 半粗体 */
+    color: var(--text); /* 主文字色 */
+    display: flex; /* 便于放置左侧色条 */
+    align-items: center; /* 垂直居中 */
+    gap: 8px; /* 色条与文字间距 */
+}
+
+/* 卡片标题左侧的强调色竖条。 */
+.card-title::before {
+    content: ""; /* 伪元素需要内容属性 */
+    width: 3px; /* 竖条宽度 */
+    height: 13px; /* 竖条高度 */
+    border-radius: 2px; /* 圆角 */
+    background: var(--accent); /* 强调色 */
+    display: block; /* 块级显示 */
+}
+
+/* 卡片内的说明文字。 */
+.hint {
+    color: var(--muted); /* 弱化颜色 */
+    font-size: 12px; /* 小字号 */
+    line-height: 1.7; /* 增大行高便于读多行说明 */
+}
+
+/* 卡片标题下方的浅色分隔线。 */
+.divider {
+    height: 1px; /* 极细线条 */
+    background: var(--line-soft); /* 淡分割线颜色 */
+    margin: 10px 0; /* 上下留白 */
+}
+
+/* ---------------------- 表单控件 ---------------------- */
+
+/* 单个字段的容器。 */
+.field {
+    display: flex; /* 纵向排列标签与控件 */
+    flex-direction: column; /* 自上而下 */
+    gap: 5px; /* 标签与控件间距 */
+    min-width: 0; /* 允许收缩，防止长标签撑破栅格 */
+}
+
+/* 字段标签。 */
+.label {
+    font-size: 12px; /* 小字号 */
+    color: var(--text-dim); /* 次要文字色 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 超长裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+}
+
+/* 标签后的可选提示（单位、取值范围）。 */
+.label .unit {
+    color: var(--muted); /* 更弱的颜色 */
+    margin-left: 4px; /* 与标签文字间距 */
+    font-size: 11px; /* 更小字号 */
+}
+
+/* 输入框、下拉框、文本域的公共样式。 */
+.control {
+    width: 100%; /* 占满字段宽度 */
+    background: var(--panel-2); /* 输入控件底色 */
+    border: 1px solid var(--line); /* 边框 */
+    border-radius: var(--radius-sm); /* 小圆角 */
+    color: var(--text); /* 文字颜色 */
+    font-family: inherit; /* 继承字体 */
+    font-size: 13px; /* 字号 */
+    padding: 6px 9px; /* 内边距 */
+    outline: none; /* 去掉默认聚焦轮廓，改用自定义边框色 */
+    transition: border-color 0.15s, background 0.15s; /* 过渡效果 */
+    min-width: 0; /* 允许收缩 */
+}
+
+/* 输入控件聚焦态。 */
+.control:focus {
+    border-color: var(--accent); /* 强调色边框 */
+    background: #1e2a3d; /* 略微提亮背景 */
+}
+
+/* 输入控件禁用态。 */
+.control:disabled {
+    color: var(--muted); /* 弱化文字 */
+    background: #131c29; /* 更暗背景 */
+    cursor: not-allowed; /* 禁止光标 */
+}
+
+/* 下拉框的选项配色（部分浏览器支持）。 */
+.control option {
+    background: #16202f; /* 深色选项底 */
+    color: var(--text); /* 选项文字颜色 */
+}
+
+/* 多行文本域。 */
+textarea.control {
+    resize: vertical; /* 只允许纵向拉伸 */
+    min-height: 62px; /* 默认高度 */
+    line-height: 1.6; /* 行高 */
+}
+
+/* 等宽字体文本域（自定义参数、命令预览使用）。 */
+.mono {
+    font-family: Consolas, "Cascadia Mono", "Courier New", monospace; /* 等宽字体栈 */
+    font-size: 12px; /* 稍小字号便于对齐 */
+    letter-spacing: 0.2px; /* 轻微字距 */
+}
+
+/* 带按钮的输入组合（例如 输入框 + 浏览按钮）。 */
+.input-row {
+    display: flex; /* 横向排列 */
+    gap: 6px; /* 间距 */
+    align-items: center; /* 垂直居中 */
+    min-width: 0; /* 允许收缩 */
+}
+
+/* 组合中的输入框占据剩余空间。 */
+.input-row .control {
+    flex: 1; /* 占据剩余宽度 */
+}
+
+/* 复选框行。 */
+.check {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 7px; /* 文字与复选框间距 */
+    font-size: 12px; /* 字号 */
+    color: var(--text-dim); /* 文字颜色 */
+    cursor: pointer; /* 手型 */
+    user-select: none; /* 防止选中文字 */
+}
+
+/* 复选框本体。 */
+.check input[type="checkbox"] {
+    accent-color: var(--accent); /* 使用强调色渲染勾选框 */
+    width: 14px; /* 宽度 */
+    height: 14px; /* 高度 */
+    cursor: pointer; /* 手型 */
+    margin: 0; /* 去掉默认外边距 */
+}
+
+/* ---------------------- 按钮 ---------------------- */
+
+/* 按钮基类。 */
+.btn {
+    appearance: none; /* 去掉默认样式 */
+    border: 1px solid var(--line); /* 边框 */
+    background: var(--panel-2); /* 底色 */
+    color: var(--text); /* 文字颜色 */
+    font-family: inherit; /* 继承字体 */
+    font-size: 12px; /* 字号 */
+    padding: 6px 12px; /* 内边距 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    cursor: pointer; /* 手型光标 */
+    white-space: nowrap; /* 不换行 */
+    transition: background 0.15s, border-color 0.15s, color 0.15s, opacity 0.15s; /* 过渡 */
+}
+
+/* 按钮悬停态。 */
+.btn:hover:not(:disabled) {
+    border-color: #33456a; /* 边框提亮 */
+    background: var(--panel-3); /* 背景提亮 */
+}
+
+/* 按钮禁用态。 */
+.btn:disabled {
+    opacity: 0.45; /* 降低不透明度表示不可用 */
+    cursor: not-allowed; /* 禁止光标 */
+}
+
+/* 主按钮（强调色）。 */
+.btn.primary {
+    background: var(--accent); /* 青色底 */
+    border-color: var(--accent); /* 同色边框 */
+    color: #04141c; /* 深色文字保证对比度 */
+    font-weight: 600; /* 半粗体 */
+}
+
+/* 主按钮悬停。 */
+.btn.primary:hover:not(:disabled) {
+    background: #43c3e2; /* 悬停提亮 */
+    border-color: #43c3e2; /* 边框同步 */
+}
+
+/* 次按钮（蓝色描边）。 */
+.btn.blue {
+    color: var(--accent-2); /* 蓝字 */
+    border-color: #2c4b7d; /* 蓝边框 */
+    background: rgba(74, 143, 240, 0.1); /* 淡蓝底 */
+}
+
+/* 危险按钮（红色，用于清空/停止）。 */
+.btn.danger {
+    color: var(--err); /* 红字 */
+    border-color: #5b2c30; /* 暗红边框 */
+    background: rgba(224, 101, 95, 0.08); /* 淡红底 */
+}
+
+/* 幽灵按钮（用于表格内的小操作）。 */
+.btn.ghost {
+    background: transparent; /* 透明底 */
+    border-color: transparent; /* 无边框 */
+    color: var(--accent); /* 强调色文字 */
+    padding: 3px 7px; /* 更小的内边距 */
+}
+
+/* 幽灵按钮悬停。 */
+.btn.ghost:hover:not(:disabled) {
+    background: var(--accent-dim); /* 淡强调色底 */
+    border-color: transparent; /* 保持无边框 */
+}
+
+/* 小尺寸按钮。 */
+.btn.sm {
+    font-size: 11px; /* 更小字号 */
+    padding: 4px 9px; /* 更小内边距 */
+}
+
+/* 按钮组：横向排列并可换行。 */
+.btn-row {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 8px; /* 间距 */
+    flex-wrap: wrap; /* 窄窗口换行 */
+}
+
+/* ---------------------- 待转文件列表 ---------------------- */
+
+/* 文件列表卡片，内部使用弹性布局让列表自适应高度。 */
+.filelist {
+    display: flex; /* 纵向布局 */
+    flex-direction: column; /* 自上而下 */
+    gap: 8px; /* 元素间距 */
+    max-height: 460px; /* 限制高度避免页面过长 */
+}
+
+/* 文件列表滚动容器。 */
+.filelist-body {
+    flex: 1; /* 占满剩余空间 */
+    min-height: 90px; /* 空列表时也保持一定高度 */
+    overflow: auto; /* 内容超出滚动 */
+    border: 1px solid var(--line-soft); /* 淡边框 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    background: var(--bg-deep); /* 更深的底，突出列表区域 */
+}
+
+/* 空列表提示。 */
+.empty {
+    padding: 26px 12px; /* 内边距 */
+    text-align: center; /* 居中 */
+    color: var(--muted); /* 弱化颜色 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 文件条目。 */
+.file-item {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 8px; /* 间距 */
+    padding: 7px 9px; /* 内边距 */
+    border-bottom: 1px solid var(--line-soft); /* 行分隔线 */
+}
+
+/* 文件条目悬停。 */
+.file-item:hover {
+    background: var(--panel-2); /* 悬停底色 */
+}
+
+/* 文件类型角标。 */
+.file-ext {
+    flex: none; /* 不压缩 */
+    font-size: 10px; /* 小字号 */
+    text-transform: uppercase; /* 统一大写 */
+    color: var(--accent); /* 强调色 */
+    background: var(--accent-dim); /* 淡强调色底 */
+    border-radius: 3px; /* 小圆角 */
+    padding: 1px 5px; /* 内边距 */
+    min-width: 38px; /* 固定最小宽度保证对齐 */
+    text-align: center; /* 居中 */
+}
+
+/* 文件信息区（名称 + 路径）。 */
+.file-info {
+    flex: 1; /* 占据剩余空间 */
+    min-width: 0; /* 允许收缩并触发省略号 */
+}
+
+/* 文件名。 */
+.file-name {
+    font-size: 12px; /* 字号 */
+    color: var(--text); /* 主文字色 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+}
+
+/* 文件路径/大小等次要信息。 */
+.file-meta {
+    font-size: 11px; /* 小字号 */
+    color: var(--muted); /* 弱化颜色 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+}
+
+/* ---------------------- 表格 ---------------------- */
+
+/* 表格容器：允许横向滚动，避免窄窗口下内容挤压变形。 */
+.table-wrap {
+    overflow: auto; /* 双向滚动 */
+    border: 1px solid var(--line-soft); /* 淡边框 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    background: var(--bg-deep); /* 深底 */
+}
+
+/* 表格本体。 */
+.table {
+    width: 100%; /* 占满容器宽度 */
+    border-collapse: collapse; /* 合并边框 */
+    font-size: 12px; /* 字号 */
+    min-width: 860px; /* 最小宽度，保证列都有基本可读宽度 */
+}
+
+/* 表头单元格。 */
+.table th {
+    position: sticky; /* 表头吸顶 */
+    top: 0; /* 贴在滚动容器顶部 */
+    z-index: 2; /* 盖住表体内容 */
+    background: #131c29; /* 表头底色 */
+    color: var(--text-dim); /* 文字颜色 */
+    font-weight: 600; /* 半粗体 */
+    text-align: left; /* 左对齐 */
+    padding: 7px 9px; /* 内边距 */
+    border-bottom: 1px solid var(--line); /* 底部分割线 */
+    white-space: nowrap; /* 表头不换行 */
+}
+
+/* 表体单元格。 */
+.table td {
+    padding: 6px 9px; /* 内边距 */
+    border-bottom: 1px solid var(--line-soft); /* 行分隔线 */
+    color: var(--text-dim); /* 文字颜色 */
+    vertical-align: middle; /* 垂直居中 */
+}
+
+/* 表体行悬停。 */
+.table tbody tr:hover {
+    background: rgba(47, 184, 217, 0.05); /* 极淡强调色底 */
+}
+
+/* 表格中的文件名单元格：限制宽度并省略。 */
+.cell-name {
+    max-width: 210px; /* 最大宽度 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+    color: var(--text); /* 主文字色 */
+}
+
+/* 表格中的错误信息单元格。 */
+.cell-err {
+    max-width: 200px; /* 最大宽度 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+    color: var(--err); /* 红色文字 */
+}
+
+/* 表格中的等宽数字单元格（速度/剩余时间/体积）。 */
+.cell-num {
+    font-variant-numeric: tabular-nums; /* 等宽数字，避免数字跳动 */
+    white-space: nowrap; /* 不换行 */
+}
+
+/* 单元格内的迷你进度条。 */
+.mini-bar {
+    position: relative; /* 定位上下文 */
+    height: 14px; /* 高度 */
+    border-radius: 3px; /* 圆角 */
+    background: var(--panel-3); /* 轨道底色 */
+    overflow: hidden; /* 裁剪内部填充 */
+    min-width: 74px; /* 最小宽度 */
+}
+
+/* 迷你进度条的填充。 */
+.mini-bar-fill {
+    position: absolute; /* 绝对定位 */
+    left: 0; /* 左贴边 */
+    top: 0; /* 上贴边 */
+    bottom: 0; /* 下贴边 */
+    background: var(--accent); /* 强调色填充 */
+}
+
+/* 迷你进度条上的百分比文字。 */
+.mini-bar-text {
+    position: relative; /* 相对定位，绘制在填充之上 */
+    z-index: 1; /* 置于填充上层 */
+    display: block; /* 块级 */
+    text-align: center; /* 居中 */
+    font-size: 10px; /* 小字号 */
+    line-height: 14px; /* 与轨道等高 */
+    color: #dff4fb; /* 亮色文字 */
+    font-variant-numeric: tabular-nums; /* 等宽数字 */
+}
+
+/* 状态徽标基类。 */
+.badge {
+    display: inline-block; /* 行内块 */
+    padding: 1px 7px; /* 内边距 */
+    border-radius: 999px; /* 胶囊 */
+    font-size: 11px; /* 字号 */
+    border: 1px solid transparent; /* 预留边框，避免不同状态尺寸跳动 */
+    white-space: nowrap; /* 不换行 */
+}
+
+/* 等待中状态。 */
+.badge.waiting {
+    color: var(--muted); /* 灰色文字 */
+    background: rgba(139, 155, 184, 0.12); /* 淡灰底 */
+    border-color: rgba(139, 155, 184, 0.25); /* 灰边框 */
+}
+
+/* 运行中状态。 */
+.badge.running {
+    color: var(--accent); /* 青色文字 */
+    background: var(--accent-dim); /* 淡青底 */
+    border-color: rgba(47, 184, 217, 0.35); /* 青边框 */
+}
+
+/* 已完成状态。 */
+.badge.done {
+    color: var(--ok); /* 绿色文字 */
+    background: rgba(53, 201, 138, 0.12); /* 淡绿底 */
+    border-color: rgba(53, 201, 138, 0.3); /* 绿边框 */
+}
+
+/* 失败状态。 */
+.badge.failed {
+    color: var(--err); /* 红色文字 */
+    background: rgba(224, 101, 95, 0.12); /* 淡红底 */
+    border-color: rgba(224, 101, 95, 0.32); /* 红边框 */
+}
+
+/* 已取消状态。 */
+.badge.canceled {
+    color: var(--warn); /* 黄色文字 */
+    background: rgba(226, 166, 60, 0.12); /* 淡黄底 */
+    border-color: rgba(226, 166, 60, 0.3); /* 黄边框 */
+}
+
+/* 已跳过状态。 */
+.badge.skipped {
+    color: var(--text-dim); /* 次要文字色 */
+    background: rgba(168, 184, 208, 0.1); /* 淡底 */
+    border-color: rgba(168, 184, 208, 0.22); /* 淡边框 */
+}
+
+/* ---------------------- 进度条与统计 ---------------------- */
+
+/* 总进度条容器。 */
+.progress {
+    position: relative; /* 定位上下文 */
+    height: 10px; /* 高度 */
+    border-radius: 999px; /* 全圆角 */
+    background: var(--panel-3); /* 轨道底色 */
+    overflow: hidden; /* 裁剪填充 */
+}
+
+/* 总进度条填充。 */
+.progress-fill {
+    position: absolute; /* 绝对定位 */
+    left: 0; /* 左贴边 */
+    top: 0; /* 上贴边 */
+    bottom: 0; /* 下贴边 */
+    background: linear-gradient(90deg, var(--accent), var(--accent-2)); /* 青到蓝的克制渐变 */
+    transition: width 0.25s ease; /* 宽度变化平滑过渡 */
+}
+
+/* 统计信息条。 */
+.stats {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 14px; /* 间距 */
+    flex-wrap: wrap; /* 窄窗口换行 */
+    font-size: 12px; /* 字号 */
+    color: var(--muted); /* 弱化颜色 */
+}
+
+/* 统计项中的数值。 */
+.stats b {
+    color: var(--text); /* 数值用主文字色突出 */
+    font-variant-numeric: tabular-nums; /* 等宽数字 */
+    font-weight: 600; /* 半粗体 */
+}
+
+/* 统计卡片小方块。 */
+.stat-box {
+    min-width: 96px; /* 最小宽度 */
+    padding: 8px 12px; /* 内边距 */
+    border: 1px solid var(--line); /* 边框 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    background: var(--panel); /* 底色 */
+}
+
+/* 统计方块内的标题。 */
+.stat-box .k {
+    font-size: 11px; /* 小字号 */
+    color: var(--muted); /* 弱化颜色 */
+}
+
+/* 统计方块内的数值。 */
+.stat-box .v {
+    font-size: 17px; /* 放大数值 */
+    font-weight: 600; /* 半粗体 */
+    color: var(--text); /* 主文字色 */
+    font-variant-numeric: tabular-nums; /* 等宽数字 */
+}
+
+/* ---------------------- 底部任务停靠区 ---------------------- */
+
+/* 停靠区容器。 */
+.dock {
+    flex: none; /* 不参与主体伸缩 */
+    border-top: 1px solid var(--line); /* 顶部与内容区之间的分割线 */
+    background: var(--bg-deep); /* 深色底 */
+    padding: 10px 16px 12px; /* 内边距 */
+    display: flex; /* 纵向布局 */
+    flex-direction: column; /* 自上而下 */
+    gap: 9px; /* 元素间距 */
+    max-height: 46vh; /* 限制最大高度，避免压缩上方内容 */
+    overflow: hidden; /* 内部滚动由表格自己负责 */
+}
+
+/* 停靠区顶部的操作行。 */
+.dock-top {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 两端对齐 */
+    gap: 12px; /* 间距 */
+    flex-wrap: wrap; /* 窄窗口换行 */
+}
+
+/* 停靠区进度与统计的组合区。 */
+.dock-progress {
+    flex: 1; /* 占据剩余宽度 */
+    min-width: 220px; /* 保证进度条有可读宽度 */
+    display: flex; /* 纵向布局 */
+    flex-direction: column; /* 自上而下 */
+    gap: 5px; /* 间距 */
+}
+
+/* 停靠区可滚动的表格区域。 */
+.dock-table {
+    flex: 1; /* 占据剩余高度 */
+    min-height: 0; /* 允许收缩 */
+    overflow: auto; /* 内容超出滚动 */
+}
+
+/* ---------------------- 弹窗（目录浏览） ---------------------- */
+
+/* 遮罩层。 */
+.mask {
+    position: fixed; /* 固定定位覆盖全屏 */
+    inset: 0; /* 四边贴边 */
+    background: rgba(4, 9, 16, 0.66); /* 半透明深色遮罩 */
+    display: flex; /* 居中弹窗 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    z-index: 50; /* 置于最上层 */
+    padding: 20px; /* 小屏留白 */
+}
+
+/* 弹窗主体。 */
+.modal {
+    width: min(720px, 100%); /* 最宽 720，窄屏自适应 */
+    max-height: min(620px, 90vh); /* 高度限制，避免超出视口 */
+    background: var(--panel); /* 面板底色 */
+    border: 1px solid var(--line); /* 边框 */
+    border-radius: var(--radius); /* 圆角 */
+    display: flex; /* 纵向布局 */
+    flex-direction: column; /* 自上而下 */
+    overflow: hidden; /* 裁剪内部圆角 */
+}
+
+/* 弹窗头部。 */
+.modal-head {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 两端对齐 */
+    gap: 10px; /* 间距 */
+    padding: 11px 14px; /* 内边距 */
+    border-bottom: 1px solid var(--line); /* 底部分割线 */
+}
+
+/* 弹窗标题。 */
+.modal-title {
+    font-size: 13px; /* 字号 */
+    font-weight: 600; /* 半粗体 */
+}
+
+/* 弹窗正文。 */
+.modal-body {
+    flex: 1; /* 占满剩余高度 */
+    min-height: 0; /* 允许收缩 */
+    overflow: auto; /* 内容滚动 */
+    padding: 12px 14px; /* 内边距 */
+}
+
+/* 弹窗底部操作区。 */
+.modal-foot {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: flex-end; /* 右对齐按钮 */
+    gap: 8px; /* 间距 */
+    padding: 10px 14px; /* 内边距 */
+    border-top: 1px solid var(--line); /* 顶部分割线 */
+    flex-wrap: wrap; /* 窄窗口换行 */
+}
+
+/* 当前目录路径显示条。 */
+.pathbar {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 8px; /* 间距 */
+    padding: 6px 9px; /* 内边距 */
+    background: var(--bg-deep); /* 深底 */
+    border: 1px solid var(--line-soft); /* 淡边框 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    margin-bottom: 10px; /* 与列表间距 */
+}
+
+/* 路径文本（可滚动，避免超长路径把按钮挤出）。 */
+.pathbar .path {
+    flex: 1; /* 占据剩余空间 */
+    min-width: 0; /* 允许收缩 */
+    font-size: 12px; /* 字号 */
+    color: var(--accent); /* 强调色，提示这是可点击区域 */
+    white-space: nowrap; /* 不换行 */
+    overflow-x: auto; /* 超长时自身横向滚动 */
+}
+
+/* 浏览列表中的一行（目录或文件）。 */
+.browse-row {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 9px; /* 间距 */
+    padding: 6px 8px; /* 内边距 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    cursor: pointer; /* 手型 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 浏览行悬停。 */
+.browse-row:hover {
+    background: var(--panel-2); /* 悬停底色 */
+}
+
+/* 浏览行中的图标。 */
+.browse-icon {
+    flex: none; /* 不压缩 */
+    width: 16px; /* 宽度 */
+    text-align: center; /* 居中 */
+    color: var(--accent); /* 强调色 */
+    font-size: 11px; /* 小字号 */
+    letter-spacing: -0.5px; /* 轻微收紧 */
+}
+
+/* 浏览行中的名称。 */
+.browse-name {
+    flex: 1; /* 占据剩余空间 */
+    min-width: 0; /* 允许收缩 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 裁剪 */
+    text-overflow: ellipsis; /* 省略号 */
+}
+
+/* 浏览行中的大小/类型信息。 */
+.browse-size {
+    flex: none; /* 不压缩 */
+    color: var(--muted); /* 弱化颜色 */
+    font-size: 11px; /* 小字号 */
+}
+
+/* ---------------------- 其它 ---------------------- */
+
+/* 段标题（用于把长表单分块）。 */
+.section-title {
+    font-size: 12px; /* 字号 */
+    color: var(--accent); /* 强调色 */
+    font-weight: 600; /* 半粗体 */
+    margin: 4px 0 8px; /* 上下留白 */
+}
+
+/* 内联的小标签行。 */
+.inline-tags {
+    display: flex; /* 横向排列 */
+    flex-wrap: wrap; /* 换行 */
+    gap: 6px; /* 间距 */
+}
+
+/* 只读信息行（键值对）。 */
+.kv {
+    display: flex; /* 横向排列 */
+    align-items: baseline; /* 基线对齐 */
+    gap: 10px; /* 间距 */
+    padding: 4px 0; /* 上下内边距 */
+    border-bottom: 1px solid var(--line-soft); /* 淡分隔线 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 键值对的键。 */
+.kv .k {
+    flex: none; /* 不压缩 */
+    width: 96px; /* 固定宽度，保证对齐 */
+    color: var(--muted); /* 弱化颜色 */
+}
+
+/* 键值对的值。 */
+.kv .v {
+    flex: 1; /* 占据剩余空间 */
+    min-width: 0; /* 允许收缩 */
+    word-break: break-all; /* 长路径允许断行 */
+    color: var(--text); /* 主文字色 */
+}
+
+/* 命令预览代码块。 */
+.preview {
+    background: var(--bg-deep); /* 深底 */
+    border: 1px solid var(--line-soft); /* 淡边框 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    padding: 9px 11px; /* 内边距 */
+    font-family: Consolas, "Cascadia Mono", "Courier New", monospace; /* 等宽字体 */
+    font-size: 12px; /* 字号 */
+    color: #cfe8f4; /* 偏青的浅色文字 */
+    white-space: pre-wrap; /* 保留换行并允许折行 */
+    word-break: break-all; /* 长参数断开 */
+    max-height: 220px; /* 高度限制 */
+    overflow: auto; /* 超出滚动 */
+    line-height: 1.66; /* 行高便于阅读 */
+}
+
+/* 顶部轻提示条。 */
+.toast {
+    padding: 7px 14px; /* 内边距 */
+    background: var(--accent-dim); /* 淡强调色底 */
+    border-bottom: 1px solid rgba(47, 184, 217, 0.3); /* 强调色边框 */
+    color: var(--accent); /* 强调色文字 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 失败详情面板。 */
+.detail {
+    border-left: 3px solid var(--err); /* 左侧红色竖条强调 */
+    background: rgba(224, 101, 95, 0.06); /* 淡红底 */
+    padding: 9px 11px; /* 内边距 */
+    border-radius: var(--radius-sm); /* 圆角 */
+    margin-top: 8px; /* 与上方内容间距 */
+}
+
+/* 失败详情中的标题行。 */
+.detail .title {
+    color: var(--err); /* 红色文字 */
+    font-weight: 600; /* 半粗体 */
+    margin-bottom: 5px; /* 与正文间距 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 失败详情中的正文行。 */
+.detail .line {
+    font-size: 12px; /* 字号 */
+    color: var(--text-dim); /* 次要文字色 */
+    word-break: break-all; /* 长错误信息断行 */
+}
+
+/* 语言/主题等窄下拉的固定宽度辅助类。 */
+.w-sm {
+    max-width: 130px; /* 限制最大宽度 */
+}
+
+/* 底部留白辅助类。 */
+.mt-8 {
+    margin-top: 8px; /* 上外边距 8px */
+}
+
+/* 底部留白辅助类。 */
+.mt-12 {
+    margin-top: 12px; /* 上外边距 12px */
+}
+
+/* 图片排序列表中的单行。 */
+.order-row {
+    display: flex; /* 横向排列 */
+    align-items: center; /* 垂直居中 */
+    gap: 8px; /* 间距 */
+    padding: 6px 8px; /* 内边距 */
+    border-bottom: 1px solid var(--line-soft); /* 行分隔线 */
+    font-size: 12px; /* 字号 */
+}
+
+/* 页码标签。 */
+.page-tag {
+    flex: none; /* 不压缩 */
+    min-width: 54px; /* 最小宽度 */
+    text-align: center; /* 居中 */
+    color: var(--accent); /* 强调色 */
+    background: var(--accent-dim); /* 淡底 */
+    border-radius: 3px; /* 小圆角 */
+    padding: 1px 6px; /* 内边距 */
+    font-size: 11px; /* 小字号 */
+}
+
+/* 响应式：窄窗口下缩小内边距与表头字号。 */
+@media (max-width: 640px) {
+    .content {
+        padding: 10px; /* 缩小页内容内边距 */
+    }
+
+    .dock {
+        padding: 8px 10px 10px; /* 缩小停靠区内边距 */
+    }
+
+    .brand-sub {
+        display: none; /* 极窄窗口隐藏副标题，节省空间 */
+    }
+}

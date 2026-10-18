@@ -1,0 +1,38 @@
+============================================================
+ Universal Transcoder 1.0.0 - self test
+============================================================
+Qt runtime version : 6.8.1
+Application dir   : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release
+
+[1/5] Locating the FFmpeg kernel (with real -version validation)
+      ffmpeg  : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release/resources/ffmpeg/ffmpeg.exe
+      ffprobe : C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release/resources/ffmpeg/ffprobe.exe
+      version : ffmpeg version 2026-02-15-git-33b215d155-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+      OK: both tools are present and validated.
+
+[2/5] Probing kernel capabilities (-encoders / -formats / -hwaccels)
+      encoders: 243 (video 142, audio 90, subtitle 11)
+      formats : 419
+      hwaccels: cuda,vaapi,dxva2,qsv,d3d11va,opencl,vulkan,d3d12va,amf
+      hardware encoders: h264_nvenc(nvidia) hevc_nvenc(nvidia) av1_nvenc(nvidia) h264_qsv(intel) hevc_qsv(intel) av1_qsv(intel) h264_amf(amd) hevc_amf(amd) av1_amf(amd) h264_vaapi(intel) hevc_vaapi(intel) h264_d3d12va(any) hevc_d3d12va(any)
+      PDF backend: Qt Pdf module is not available in this build - PDF to image conversion is unsupported
+      presets  : 35 (video 14 / audio 11 / image 10)
+      OK: the kernel answered all capability queries.
+
+[3/5] Locating the sample video
+      source: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/Samples/test_video.mp4
+
+[4/5] Running a real transcode (MP4 / H.264 + AAC)
+      probe : mov,mp4,m4a,3gp,3g2,mj2 | video: 640x480/h264/25.00 fps | audio: aac/44100 Hz/1 ch | duration: 00:06
+      output: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release/selftest_out/selftest_video.mp4
+      command: C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release/resources/ffmpeg/ffmpeg.exe -hide_banner -y -i C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/Samples/test_video.mp4 -c:v libx264 -preset medium -crf 30 -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart -f mp4 -vf scale=640:-2 C:/Users/Happy/Pictures/watermark/FormatFactory2026101621391/UniversalTranscoder-Qt-EN/release/selftest_out/selftest_video.mp4
+      exit code: 0, elapsed: 0.35 s, progress reached 100.0%
+      output size: 109911 bytes (107 KB)
+
+[5/5] Verifying the produced file
+      re-probe: mov,mp4,m4a,3gp,3g2,mj2 | video: 640x480/h264/25.00 fps | audio: aac/44100 Hz/1 ch | duration: 00:06
+      streams : 2 (video 1, audio 1)
+      file exists and is non-empty: yes
+      recognizable media file  : yes
+
+RESULT: PASS - kernel validated and a real transcode produced a usable file.

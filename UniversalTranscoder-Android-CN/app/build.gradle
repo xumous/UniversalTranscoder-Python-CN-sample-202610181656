@@ -1,0 +1,97 @@
+// :app 模块的构建脚本：定义了 Android 应用的编译、默认配置、签名与依赖。
+plugins {
+    // 应用 Android 应用插件；版本已在根工程 plugins{} 中锁定为 8.4.0。
+    id 'com.android.application'
+}
+
+android {
+    // namespace 是 AGP 8.x 新增的字段，用于生成 R 类与 BuildConfig 的包名，必须与源码包名一致。
+    namespace 'com.xu.universaltranscoder'
+    // compileSdk 34 表示使用 Android 14 的 SDK 平台进行编译（能访问最新 API，但不影响运行行为）。
+    compileSdk 34
+
+    defaultConfig {
+        // applicationId 是安装到设备上的真实包名，需求指定为 com.xu.universaltranscoder。
+        applicationId 'com.xu.universaltranscoder'
+        // minSdk 28：需求要求只运行在 Android 9(API 28) 及以上，低版本系统缺少部分 MediaCodec/PDF API。
+        minSdk 28
+        // targetSdk 28：需求明确要求“API 28 版”的目标行为，因此不做高版本的运行时行为变更。
+        targetSdk 28
+        // versionCode/versionName 用于版本识别，界面与 About 页展示 1.0.0。
+        versionCode 1
+        versionName '1.0.0'
+    }
+
+    // 关闭 Lint 的“中断构建”行为：本工程需要稳定产出 APK，Lint 报告不作为构建失败条件。
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    // 签名配置：release 使用本工程自签名 keystore，保证 assembleRelease 能直接产出可安装的 APK。
+    signingConfigs {
+        release {
+            // keystore 文件放在工程根目录（非 app 目录），路径用相对工程根的写法以便迁移。
+            storeFile rootProject.file('universaltranscoder.jks')
+            // keystore 密码：自签名测试用途，与 keytool 生成时保持一致。
+            storePassword 'utc2026pass'
+            // 别名固定为 universaltranscoder，便于识别。
+            keyAlias 'universaltranscoder'
+            // 私钥密码与 keystore 密码一致，简化管理。
+            keyPassword 'utc2026pass'
+        }
+    }
+
+    buildTypes {
+        debug {
+            // debug 包保留调试符号并自动使用 debug 签名（AGP 默认行为）。
+            minifyEnabled false
+            // debug 包也打开 BuildConfig，方便在日志里读取 DEBUG 标记。
+            buildConfigField 'boolean', 'LOG_VERBOSE_DEFAULT', 'true'
+        }
+        release {
+            // release 包不做代码压缩，避免 MediaCodec 反射调用与 AndroidX 组件被误删。
+            minifyEnabled false
+            // 指定使用上面定义的 release 自签名配置，从而产出可安装的正式包。
+            signingConfig signingConfigs.release
+            // release 包默认日志级别较保守，仅输出 INFO 及以上。
+            buildConfigField 'boolean', 'LOG_VERBOSE_DEFAULT', 'false'
+        }
+    }
+
+    // 编译选项：需求要求使用 Java 17 语言级别。
+    compileOptions {
+        // 源码按 Java 17 语法解析（可使用 var、switch 表达式等）。
+        sourceCompatibility JavaVersion.VERSION_17
+        // 生成的字节码目标版本为 17；AGP 会配合 D8 将其脱糖到设备可执行的 dex。
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    // buildFeatures：按需求打开 BuildConfig 生成。
+    buildFeatures {
+        // 打开 BuildConfig，使上面的 buildConfigField 生效。
+        buildConfig true
+    }
+
+    // 资源打包选项：不排除任何语言资源（本工程 strings.xml 全英文）。
+    packaging {
+        resources {
+            // 去掉重复的 license 文件，避免打包冲突导致构建失败。
+            excludes += ['META-INF/LICENSE', 'META-INF/LICENSE.txt', 'META-INF/NOTICE', 'META-INF/NOTICE.txt']
+        }
+    }
+}
+
+dependencies {
+    // AndroidX AppCompat：提供 AppCompatActivity、Theme.AppCompat 与向下兼容的基础组件。
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    // Material Components：提供 TabLayout、MaterialButton、TextInputLayout 等界面控件。
+    implementation 'com.google.android.material:material:1.11.0'
+    // ViewPager2：实现 MainActivity 的左右滑动标签页容器。
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    // ConstraintLayout：用于主界面与表单页的约束式布局，避免多层嵌套。
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    // androidx.annotation：提供 @NonNull/@Nullable/@StringDef 等注解，提升静态检查质量。
+    implementation 'androidx.annotation:annotation:1.7.1'
+    // androidx.recyclerview 会作为 material/appcompat 的传递依赖被自动引入，这里不重复声明。
+}

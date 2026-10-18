@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 自适应图标的自定义背景层：使用品牌蓝的线性渐变，避免使用系统默认的灰色底色。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108"
+        android:viewportHeight="108">
+
+    <!-- 铺满整个画布的矩形，填充使用左上到右下的品牌色渐变。 -->
+    <path android:pathData="M0,0 L108,0 L108,108 L0,108 Z">
+        <aapt:attr name="android:fillColor">
+            <!-- 渐变：startColor 为较亮的品牌蓝，endColor 为较深的品牌蓝。 -->
+            <gradient
+                    android:startColor="#2E80FF"
+                    android:endColor="#0B4FC4"
+                    android:startX="0"
+                    android:startY="0"
+                    android:endX="108"
+                    android:endY="108"
+                    android:type="linear"/>
+        </aapt:attr>
+    </path>
+</vector>

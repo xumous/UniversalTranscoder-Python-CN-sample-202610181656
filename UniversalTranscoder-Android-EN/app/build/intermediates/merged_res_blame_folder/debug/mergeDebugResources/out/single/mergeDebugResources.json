@@ -1,0 +1,78 @@
+[
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_fragment_audio.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/fragment_audio.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_activity_main.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/activity_main.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/drawable_ic_file.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/drawable/ic_file.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_fragment_document.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/fragment_document.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/drawable_ic_folder.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/drawable/ic_folder.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_activity_about.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/activity_about.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_fragment_image.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/fragment_image.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_fragment_queue.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/fragment_queue.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_fragment_video.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/fragment_video.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/drawable_bg_card.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/drawable/bg_card.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/drawable_ic_launcher_background.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/drawable/ic_launcher_background.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_convert_actions.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/convert_actions.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/menu_main_menu.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/menu/main_menu.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_item_queue_task.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/item_queue_task.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/drawable/ic_launcher_foreground.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_activity_settings.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/activity_settings.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+  },
+  {
+    "merged": "com.xu.universaltranscoder.app-debug-31:/layout_convert_common.xml.flat",
+    "source": "com.xu.universaltranscoder.app-main-33:/layout/convert_common.xml"
+  }
+]

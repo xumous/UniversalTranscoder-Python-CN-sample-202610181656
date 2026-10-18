@@ -1,0 +1,23 @@
+# 本项目运行所需依赖（中文版）。
+# 安装方式：
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   pip install -r requirements.txt
+# 说明：
+#   - PyQt6        ：桌面端图形界面（Qt6 的 Python 绑定）。
+#   - fastapi/uvicorn：Web 端后端（REST + WebSocket）。
+#   - python-multipart：FastAPI 处理表单/文件上传所需。
+#   - websockets   ：uvicorn 的 WebSocket 支持（进度推送依赖它）。
+#   - Pillow       ：图片读写与“图片 → PDF”等文档转换。
+#   - pypdfium2    ：PDF 渲染，用于“PDF → 图片”。
+#   - pyinstaller  ：打包为独立可执行文件（仅构建时需要，运行时不依赖）。
+# 注意：requirements 中不包含 FFmpeg —— 它以二进制形式随程序分发在 resources/ffmpeg 下。
+
+PyQt6>=6.6
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9
+websockets>=12.0
+Pillow>=10.0
+pypdfium2>=4.20
+pyinstaller>=6.0

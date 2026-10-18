@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 图片转换页布局：公共部分 + 图片专属参数 + 公共操作区。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+    <!-- 页面内容容器。 -->
+    <LinearLayout
+            style="@style/PageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- 公共部分。 -->
+        <include layout="@layout/convert_common"/>
+
+        <!-- 图片专属参数卡片。 -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="1dp">
+
+            <!-- 参数容器。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                <!-- 分组标题。 -->
+                <TextView
+                        style="@style/SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_options"/>
+
+                <!-- 质量标题行：标题 + 当前数值。 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <!-- 质量标签。 -->
+                    <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_quality"
+                            android:textColor="@color/text_secondary"/>
+
+                    <!-- 当前质量数值文本。 -->
+                    <TextView
+                            android:id="@+id/txt_quality_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/text_primary"/>
+                </LinearLayout>
+
+                <!-- 质量滑动条：1..100，仅对有损格式（JPEG/WEBP）生效。 -->
+                <SeekBar
+                        android:id="@+id/sb_quality"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"/>
+
+                <!-- 缩放输入：支持 "50%"、"1280x720" 或只写宽度 "1920"。 -->
+                <EditText
+                        android:id="@+id/et_image_scale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_scale"
+                        android:inputType="text"/>
+
+                <!-- 缩放说明文本。 -->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hint_scale"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 公共操作区。 -->
+        <include layout="@layout/convert_actions"/>
+    </LinearLayout>
+</ScrollView>

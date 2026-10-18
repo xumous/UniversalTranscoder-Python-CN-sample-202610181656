@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 队列条目布局：文件名 + 目标格式/状态 + 进度条 + 百分比 + 速度/耗时。 -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:layout_marginBottom="@dimen/space_small"
+                                                   android:minHeight="@dimen/item_min_height"
+                                                   app:cardCornerRadius="@dimen/card_radius"
+                                                   app:cardElevation="1dp">
+
+    <!-- 条目内容容器。 -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/card_padding">
+
+        <!-- 文件名。 -->
+        <TextView
+                android:id="@+id/txt_item_title"
+                style="@style/ItemTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:maxLines="1"/>
+
+        <!-- 目标格式与状态。 -->
+        <TextView
+                android:id="@+id/txt_item_subtitle"
+                style="@style/ItemSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"/>
+
+        <!-- 进度条。 -->
+        <ProgressBar
+                android:id="@+id/pb_item"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+                android:max="100"/>
+
+        <!-- 百分比与速度/耗时行。 -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <!-- 百分比文本。 -->
+            <TextView
+                    android:id="@+id/txt_item_progress"
+                    style="@style/ItemSubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+            <!-- 速度与耗时文本。 -->
+            <TextView
+                    android:id="@+id/txt_item_perf"
+                    style="@style/ItemSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

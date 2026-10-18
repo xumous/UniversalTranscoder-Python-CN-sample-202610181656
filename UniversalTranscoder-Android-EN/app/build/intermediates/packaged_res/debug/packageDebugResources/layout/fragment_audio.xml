@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 音频转换页布局：公共部分 + 音频专属参数 + 公共操作区。 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+    <!-- 页面内容容器。 -->
+    <LinearLayout
+            style="@style/PageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <!-- 公共部分。 -->
+        <include layout="@layout/convert_common"/>
+
+        <!-- 音频专属参数卡片。 -->
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_between"
+                app:cardCornerRadius="@dimen/card_radius"
+                app:cardElevation="1dp">
+
+            <!-- 参数容器。 -->
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding">
+
+                <!-- 分组标题。 -->
+                <TextView
+                        style="@style/SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_options"/>
+
+                <!-- 音频码率输入（kbps）。 -->
+                <EditText
+                        android:id="@+id/et_audio_bitrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_bitrate"
+                        android:inputType="number"
+                        android:maxLength="4"/>
+
+                <!-- 采样率输入（Hz）。 -->
+                <EditText
+                        android:id="@+id/et_sample_rate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/label_sample_rate"
+                        android:inputType="number"
+                        android:maxLength="6"/>
+
+                <!-- 分组标题：声道选择。 -->
+                <TextView
+                        style="@style/SectionLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_channels"/>
+
+                <!-- 声道下拉框：单声道 / 立体声。 -->
+                <Spinner
+                        android:id="@+id/spinner_channels"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 公共操作区。 -->
+        <include layout="@layout/convert_actions"/>
+    </LinearLayout>
+</ScrollView>

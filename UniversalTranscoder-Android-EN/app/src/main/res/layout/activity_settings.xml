@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置页布局：顶部工具栏（含返回箭头）+ 五个设置卡片。 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <!-- 工具栏：展示页面标题并提供返回入口。 -->
+    <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/brand_primary"
+            app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+            app:title="@string/settings_title"
+            app:titleTextColor="#FFFFFF"/>
+
+    <!-- 可滚动内容区。 -->
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+        <!-- 页面内容容器。 -->
+        <LinearLayout
+                style="@style/PageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <!-- 卡片：并发任务数。 -->
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/card_radius"
+                    app:cardElevation="1dp">
+
+                <!-- 内容容器。 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                    <!-- 条目说明。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_concurrency"
+                            android:textColor="@color/text_primary"
+                            android:textStyle="bold"/>
+
+                    <!-- 说明文本。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_concurrency_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"/>
+
+                    <!-- 并发数下拉：1..4。 -->
+                    <Spinner
+                            android:id="@+id/spinner_concurrency"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 卡片：默认输出目录。 -->
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_between"
+                    app:cardCornerRadius="@dimen/card_radius"
+                    app:cardElevation="1dp">
+
+                <!-- 内容容器。 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                    <!-- 条目说明。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_output"
+                            android:textColor="@color/text_primary"
+                            android:textStyle="bold"/>
+
+                    <!-- 说明文本。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_output_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"/>
+
+                    <!-- 当前默认目录展示。 -->
+                    <TextView
+                            android:id="@+id/txt_settings_output"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_small"
+                            android:textColor="@color/text_secondary"/>
+
+                    <!-- 选择默认目录按钮。 -->
+                    <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_settings_output"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_pick_output"
+                            app:icon="@drawable/ic_folder"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 卡片：日志级别。 -->
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_between"
+                    app:cardCornerRadius="@dimen/card_radius"
+                    app:cardElevation="1dp">
+
+                <!-- 内容容器。 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                    <!-- 条目说明。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_log_level"
+                            android:textColor="@color/text_primary"
+                            android:textStyle="bold"/>
+
+                    <!-- 说明文本。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_log_level_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"/>
+
+                    <!-- 日志级别下拉：Error / Info / Debug。 -->
+                    <Spinner
+                            android:id="@+id/spinner_log_level"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="48dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 卡片：硬件加速开关。 -->
+            <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_between"
+                    app:cardCornerRadius="@dimen/card_radius"
+                    app:cardElevation="1dp">
+
+                <!-- 内容容器。 -->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/card_padding">
+
+                    <!-- 开关本体。 -->
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                            android:id="@+id/switch_hw"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_hw"/>
+
+                    <!-- 说明文本。 -->
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/settings_hw_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="12sp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 恢复默认按钮。 -->
+            <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_settings_reset"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_between"
+                    android:text="@string/settings_reset"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
